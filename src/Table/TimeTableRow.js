@@ -3,15 +3,37 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TimeTableCell from "./TimeTableCell";
 
-const TimeTableRow = ({ daysOfWeek, startHour, endHour, selectedLectures }) => {
-  const cellStyle = {
-    textAlign: "left",
-    width: "calc(100% / 6.5)",
+const TimeTableRow = ({
+  daysOfWeek,
+  startHour,
+  endHour,
+  selectedLectures,
+  onDeleteLecture,
+}) => {
+  const assignColorToLectures = () => {
+    const assignedColors = {};
+    let colorIndex = 0;
+
+    selectedLectures.forEach((lecture) => {
+      if (!assignedColors[lecture.name]) {
+        assignedColors[lecture.name] = lectureColors[colorIndex];
+        colorIndex = (colorIndex + 1) % lectureColors.length;
+      }
+    });
+
+    return assignedColors;
   };
 
-  const selectedCellStyle = {
-    backgroundColor: "lightblue",
-  };
+  const lectureColors = [
+    "#E8F0FA",
+    "#CEE0F4",
+    "#A7C1E1",
+    "#84A1C4",
+    "#6682A7",
+    "#607B9B",
+  ];
+
+  const assignedColors = assignColorToLectures();
 
   return (
     <TableRow key={startHour}>
@@ -21,7 +43,7 @@ const TimeTableRow = ({ daysOfWeek, startHour, endHour, selectedLectures }) => {
           (lecture) =>
             lecture.day.includes(day) &&
             Number(lecture.startTime.split(":")[0]) <= startHour &&
-            Number(lecture.endTime.split(":")[0]) > startHour
+            Number(lecture.endTime.split(":")[0]) >= endHour
         );
 
         return (
@@ -31,8 +53,8 @@ const TimeTableRow = ({ daysOfWeek, startHour, endHour, selectedLectures }) => {
             endHour={endHour}
             col={col}
             lecturesOfDay={lecturesOfDay}
-            cellStyle={cellStyle}
-            selectedCellStyle={selectedCellStyle}
+            assignedColors={assignedColors}
+            onDeleteLecture={onDeleteLecture}
           />
         );
       })}

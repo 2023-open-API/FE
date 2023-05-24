@@ -4,7 +4,7 @@ import { makeStyles, ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   modal: {
     display: "flex",
     alignItems: "center",

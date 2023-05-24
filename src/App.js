@@ -4,7 +4,7 @@ import TimeTableApp from "./TimeTableApp";
 function App() {
   return (
     <div>
-      <TimeTableApp />;
+      <TimeTableApp />
     </div>
   );
 }

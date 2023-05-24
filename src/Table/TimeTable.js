@@ -21,28 +21,32 @@ const useStyles = makeStyles({
     boxShadow: "none",
   },
   tableContainer: {
-    border: "1px solid #ccc",
     borderRadius: 4,
     overflow: "hidden",
   },
   table: {
     borderSpacing: 0,
     "& th, & td": {
+      height: 30,
       border: "1px solid #ccc",
       padding: 10,
-      textAlign: "left",
+      textAlign: "center",
     },
   },
 });
 
-function TimeTable({ selectedLectures }) {
+function TimeTable({ selectedLectures, onDeleteLecture }) {
   const classes = useStyles();
   const daysOfWeek = ["월", "화", "수", "목", "금"];
   const hoursOfDay = Array.from({ length: 14 }, (_, index) => index + 9);
 
   return (
     <div className={classes.container}>
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      <TableContainer
+        component={Paper}
+        className={classes.tableContainer}
+        elevation={0}
+      >
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -60,6 +64,7 @@ function TimeTable({ selectedLectures }) {
                 endHour={startHour + 1}
                 daysOfWeek={daysOfWeek}
                 selectedLectures={selectedLectures}
+                onDeleteLecture={onDeleteLecture}
               />
             ))}
           </TableBody>
