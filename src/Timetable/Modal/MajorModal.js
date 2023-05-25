@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     listStyle: "none",
-    padding: "20px",
+    padding: "10px",
     margin: 0,
   },
   listItem: {
@@ -40,8 +40,8 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
   const classes = useStyles();
 
   const handleMajorSelect = (major) => {
-    onSelect(major.major); // 학과 선택 시 onSelect 함수 호출
-    handleCloseModal(); // 모달 닫기
+    onSelect(major.major);
+    handleCloseModal();
   };
 
   return (
@@ -49,13 +49,18 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
       <Modal className={classes.modal} open={isOpen} onClose={handleCloseModal}>
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
-            <Typography variant="h5">학과 선택</Typography>
+            <Typography
+              style={{ fontSize: "20px", marginBottom: "20px" }}
+              variant="h5"
+            >
+              학과 선택
+            </Typography>
             <ul className={classes.list}>
               {majorData.map((major) => (
                 <li
                   key={major.id}
                   className={classes.listItem}
-                  onClick={() => handleMajorSelect(major)} // 학과 선택 시 핸들러 호출
+                  onClick={() => handleMajorSelect(major)}
                 >
                   <Typography className={classes.listItemText} variant="body1">
                     {major.major}

@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
-import SearchModal from "../Modal/SearchModal";
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
@@ -26,13 +25,25 @@ const ModalButtons = ({
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.buttonContainer}>
-        <Button variant="contained" onClick={handleOpenMajorModal}>
+        <Button
+          sx={{ boxShadow: "none" }}
+          variant="contained"
+          onClick={handleOpenMajorModal}
+        >
           전공/영역
         </Button>
-        <Button variant="contained" onClick={handleOpenGradeModal}>
+        <Button
+          sx={{ boxShadow: "none" }}
+          variant="contained"
+          onClick={handleOpenGradeModal}
+        >
           학년
         </Button>
-        <Button variant="contained" onClick={handleOpenSearchModal}>
+        <Button
+          sx={{ boxShadow: "none" }}
+          variant="contained"
+          onClick={handleOpenSearchModal}
+        >
           검색
         </Button>
       </div>

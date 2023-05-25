@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TableCell from "@mui/material/TableCell";
-import { DeleteOutline } from "@mui/icons-material";
-import ConfirmModal from "../Modal/ConfirmModal";
+import { FaTimes } from "react-icons/fa";
 
 const colors = [
   "#E8F0FA",
@@ -21,7 +20,6 @@ function TimeTableCell({
   onDeleteLecture,
 }) {
   const [isHovered, setIsHovered] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
 
   const cellStyle = {
     textAlign: "left",
@@ -30,8 +28,9 @@ function TimeTableCell({
   };
 
   const getColorByLecture = (lectureName) => {
-    return assignedColors[lectureName] || "#607B9B"; // 기본 색상
+    return assignedColors[lectureName] || "#607B9B";
   };
+
   const isFirstCell =
     lecturesOfDay.length > 0 &&
     startHour === Number(lecturesOfDay[0].startTime.split(":")[0]);
@@ -61,15 +60,10 @@ function TimeTableCell({
   };
 
   const handleDeleteLecture = () => {
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
-  const handleConfirmDelete = () => {
-    onDeleteLecture(lecturesOfDay[0].name);
+    const confirmation = window.confirm("강의를 삭제하시겠습니까?");
+    if (confirmation) {
+      onDeleteLecture(lecturesOfDay[0].name);
+    }
   };
 
   return (
@@ -115,14 +109,9 @@ function TimeTableCell({
           }}
           onClick={handleDeleteLecture}
         >
-          <DeleteOutline />
+          <FaTimes style={{ margin: "5px", color: "rgba(0, 0, 0, 0.5)" }} />
         </div>
       )}
-      <ConfirmModal
-        open={openModal}
-        onClose={handleCloseModal}
-        onConfirm={handleConfirmDelete}
-      />
     </TableCell>
   );
 }

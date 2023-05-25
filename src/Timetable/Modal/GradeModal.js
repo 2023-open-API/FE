@@ -44,11 +44,11 @@ function GradeModal({
 }) {
   const classes = useStyles();
 
-  const grades = [1, 2, 3, 4]; // 학년 리스트
+  const grades = [1, 2, 3, 4];
 
   const handleSelectGrade = (grade) => {
-    handleGradeSelect(grade); // 학년 선택 시 handleGradeSelect 함수 호출
-    handleCloseModal(); // 모달 닫기
+    handleGradeSelect(grade);
+    handleCloseModal();
   };
 
   return (
@@ -56,12 +56,17 @@ function GradeModal({
       <Modal className={classes.modal} open={isOpen} onClose={handleCloseModal}>
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
-            <Typography variant="h5">학년 선택</Typography>
+            <Typography
+              style={{ fontSize: "20px", marginBottom: "25px" }}
+              variant="h5"
+            >
+              학년 선택
+            </Typography>
             {grades.map((grade) => (
               <div
                 key={grade}
                 className={classes.listItem}
-                onClick={() => handleSelectGrade(grade)} // 학년 선택 시 핸들러 호출
+                onClick={() => handleSelectGrade(grade)}
               >
                 <Typography variant="body1" className={classes.listItemText}>
                   {grade}학년

@@ -13,24 +13,21 @@ import TableContainer from "@mui/material/TableContainer";
 
 const useStyles = makeStyles({
   container: {
-    width: "80%",
-    maxWidth: "650px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginTop: "50px",
     boxShadow: "none",
   },
   tableContainer: {
-    borderRadius: 4,
-    overflow: "hidden",
+    border: "1px solid #A4A4A4",
   },
   table: {
     borderSpacing: 0,
+    borderBottom: "none",
     "& th, & td": {
       height: 30,
-      border: "1px solid #ccc",
       padding: 10,
       textAlign: "center",
+    },
+    "& th:not(:last-child), td:not(:last-child)": {
+      borderRight: "1px solid #ccc",
     },
   },
 });

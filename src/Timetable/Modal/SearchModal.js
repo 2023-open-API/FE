@@ -27,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     marginRight: "10px",
   },
-  searchButton: {
-    marginLeft: "10px",
-  },
   alert: {
     marginTop: "10px",
     color: "red",
@@ -62,10 +59,15 @@ function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
       <Modal className={classes.modal} open={isOpen} onClose={handleCloseModal}>
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
-            <Typography variant="h5">강의 검색</Typography>
+            <Typography
+              style={{ marginBottom: "30px", fontSize: "20px" }}
+              variant="h5"
+            >
+              강의 검색
+            </Typography>
             <div className={classes.searchContainer}>
               <TextField
-                label="강의명"
+                label="강의명을 입력하세요"
                 variant="outlined"
                 className={classes.searchInput}
                 value={searchQuery}
@@ -74,8 +76,12 @@ function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
               <Button
                 variant="contained"
                 color="primary"
-                className={classes.searchButton}
                 onClick={handleSearch}
+                style={{
+                  marginLeft: "20px",
+                  backgroundColor: "#A7C1E1",
+                  boxShadow: "none",
+                }}
               >
                 검색
               </Button>

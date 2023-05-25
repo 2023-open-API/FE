@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TimeTableApp from "./TimeTableApp";
+import TimeTableApp from "./components/TimeTableApp";
 
 function App() {
   return (
