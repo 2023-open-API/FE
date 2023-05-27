@@ -16,15 +16,17 @@ const useStyles = makeStyles({
     boxShadow: "none",
   },
   tableContainer: {
-    border: "1px solid #A4A4A4",
+    //border: "1px solid #A4A4A4",
   },
   table: {
     borderSpacing: 0,
     borderBottom: "none",
     "& th, & td": {
-      height: 30,
-      padding: 10,
+      padding: 2,
+      height: 45,
       textAlign: "center",
+      fontFamily: "Jamsil",
+      fontWeight: 200,
     },
     "& th:not(:last-child), td:not(:last-child)": {
       borderRight: "1px solid #ccc",
@@ -35,7 +37,7 @@ const useStyles = makeStyles({
 function TimeTable({ selectedLectures, onDeleteLecture }) {
   const classes = useStyles();
   const daysOfWeek = ["월", "화", "수", "목", "금"];
-  const hoursOfDay = Array.from({ length: 14 }, (_, index) => index + 9);
+  const hoursOfDay = Array.from({ length: 15 }, (_, index) => index + 9);
 
   return (
     <div className={classes.container}>
@@ -64,6 +66,7 @@ function TimeTable({ selectedLectures, onDeleteLecture }) {
                 onDeleteLecture={onDeleteLecture}
               />
             ))}
+            {console.log(selectedLectures)}
           </TableBody>
         </Table>
       </TableContainer>

@@ -56,6 +56,7 @@ const lectureData = [
     endTime: "12:00",
     credits: 3,
     major: "전자공학과",
+    room: "공2",
   },
   {
     id: 2,
@@ -68,6 +69,7 @@ const lectureData = [
     endTime: "16:00",
     credits: 4,
     major: "컴퓨터공학과",
+    room: "공5",
   },
   {
     id: 3,
@@ -80,6 +82,7 @@ const lectureData = [
     endTime: "11:00",
     credits: 2,
     major: "화학공학과",
+    room: "공2",
   },
   // ...
 ];
@@ -93,6 +96,7 @@ function ClassList({ addLecture }) {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const [searchedLecture, setSearchedLecture] = useState(null);
   const [showNoResultAlert, setShowNoResultAlert] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleOpenMajorModal = () => {
     setIsMajorModalOpen(true);
@@ -116,6 +120,7 @@ function ClassList({ addLecture }) {
 
   const handleCloseSearchModal = () => {
     setIsSearchModalOpen(false);
+    setSearchQuery("");
   };
 
   const handleSelectMajor = (major) => {
@@ -138,7 +143,9 @@ function ClassList({ addLecture }) {
     } else {
       setSearchedLecture(null);
       setShowNoResultAlert(true);
+      alert("해당 강의는 없습니다");
     }
+    setSearchQuery("");
   };
 
   return (
@@ -163,6 +170,8 @@ function ClassList({ addLecture }) {
                 "& .MuiTableCell-root": {
                   borderBottom: "1.5px solid #A7C1E1",
                   textAlign: "center",
+                  fontFamily: "Jamsil",
+                  fontWeight: 300,
                 },
               }}
             >
@@ -197,7 +206,19 @@ function ClassList({ addLecture }) {
                       }-${lecture.endTime}`}</TableCell>
                       <TableCell>{lecture.credits}</TableCell>
                       <TableCell>
-                        <button onClick={() => addLecture(lecture)}>
+                        <button
+                          onClick={() => addLecture(lecture)}
+                          style={{
+                            fontFamily: "Jamsil",
+                            fontWeight: 300,
+                            border: 0,
+                            backgroundColor: "#A7C1E1",
+                            color: "white",
+                            height: "25px",
+                            width: "45px",
+                            borderRadius: "5px",
+                          }}
+                        >
                           추가
                         </button>
                       </TableCell>
@@ -225,13 +246,9 @@ function ClassList({ addLecture }) {
             handleCloseModal={handleCloseSearchModal}
             lectureData={lectureData}
             onSearch={handleSearchLecture}
+            setSearchQuery={setSearchQuery}
+            searchQuery={searchQuery}
           />
-
-          {showNoResultAlert && (
-            <Typography variant="body1" className={classes.alert}>
-              해당 강의는 없습니다.
-            </Typography>
-          )}
         </ThemeProvider>
       </div>
     </div>

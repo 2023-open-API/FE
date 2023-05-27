@@ -25,6 +25,8 @@ function TimeTableCell({
     textAlign: "left",
     width: "calc(100% / 6.5)",
     position: "relative",
+    fontFamily: "Jamsil",
+    fontWeight: 200,
   };
 
   const getColorByLecture = (lectureName) => {
@@ -75,6 +77,7 @@ function TimeTableCell({
               ...cellStyle,
               backgroundColor: getColorByLecture(lecturesOfDay[0].name),
               border: "none",
+              borderRight: "1px solid #ccc",
             }
           : cellStyle
       }
@@ -82,23 +85,20 @@ function TimeTableCell({
       onMouseLeave={handleMouseLeave}
     >
       {lecturesOfDay.map((lecture, index) => (
-        <div
-          key={index}
-          style={{
-            textAlign: "left",
-            fontSize: index === 0 ? "80%" : "60%",
-            display: index === 0 && isFirstCell ? "block" : "none",
-          }}
-        >
-          {index === 0 ? lecture.name : ""}
-          {index === 0 && (
+        <span key={index}>
+          {index === 0 && isFirstCell && (
             <>
-              <br />
-              {lecture.startTime}
+              <h4 style={{ fontWeight: 300, fontSize: "80%", margin: 0 }}>
+                {lecture.name}
+              </h4>
+              <p style={{ fontSize: "60%", lineHeight: 0 }}>
+                {lecture.startTime} {lecture.room}
+              </p>
             </>
           )}
-        </div>
+        </span>
       ))}
+
       {isHovered && isFirstCell && (
         <div
           style={{

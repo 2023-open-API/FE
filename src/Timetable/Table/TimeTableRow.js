@@ -36,8 +36,8 @@ const TimeTableRow = ({
   const assignedColors = assignColorToLectures();
 
   return (
-    <TableRow key={startHour}>
-      <TableCell>{`${startHour}:00 - ${endHour}:00`}</TableCell>
+    <TableRow key={startHour} sx={{ fontFamily: "Jamsil", fontWeight: 300 }}>
+      <TableCell>{`${startHour}:00 `}</TableCell>
       {daysOfWeek.map((day, col) => {
         const lecturesOfDay = selectedLectures.filter(
           (lecture) =>

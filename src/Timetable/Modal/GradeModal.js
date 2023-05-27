@@ -57,7 +57,12 @@ function GradeModal({
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
             <Typography
-              style={{ fontSize: "20px", marginBottom: "25px" }}
+              style={{
+                fontSize: "20px",
+                marginBottom: "25px",
+                fontFamily: "Jamsil",
+                fontWeight: 400,
+              }}
               variant="h5"
             >
               학년 선택
@@ -68,7 +73,11 @@ function GradeModal({
                 className={classes.listItem}
                 onClick={() => handleSelectGrade(grade)}
               >
-                <Typography variant="body1" className={classes.listItemText}>
+                <Typography
+                  style={{ fontFamily: "Jamsil", fontWeight: 300 }}
+                  variant="body1"
+                  className={classes.listItemText}
+                >
                   {grade}학년
                 </Typography>
                 <ChevronRightIcon className={classes.chevronIcon} />

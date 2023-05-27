@@ -6,8 +6,10 @@ import { createTheme } from "@mui/system";
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     "& > button": {
-      backgroundColor: "#A7C1E1", // A7C1E1 색상 설정
+      backgroundColor: "#A7C1E1",
       marginRight: "20px",
+      fontFamily: "Jamsil",
+      fontWeight: 400,
     },
   },
 }));
@@ -26,21 +28,21 @@ const ModalButtons = ({
     <ThemeProvider theme={theme}>
       <div className={classes.buttonContainer}>
         <Button
-          sx={{ boxShadow: "none" }}
+          sx={{ boxShadow: "none", borderRadius: "12px" }}
           variant="contained"
           onClick={handleOpenMajorModal}
         >
           전공/영역
         </Button>
         <Button
-          sx={{ boxShadow: "none" }}
+          sx={{ boxShadow: "none", borderRadius: "12px" }}
           variant="contained"
           onClick={handleOpenGradeModal}
         >
           학년
         </Button>
         <Button
-          sx={{ boxShadow: "none" }}
+          sx={{ boxShadow: "none", borderRadius: "12px" }}
           variant="contained"
           onClick={handleOpenSearchModal}
         >

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, Fade, Typography, TextField, Button } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
-import { Autocomplete } from "@mui/lab";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,9 +34,15 @@ const useStyles = makeStyles((theme) => ({
 
 const theme = createTheme();
 
-function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
+function SearchModal({
+  isOpen,
+  handleCloseModal,
+  lectureData,
+  onSearch,
+  searchQuery,
+  setSearchQuery,
+}) {
   const classes = useStyles();
-  const [searchQuery, setSearchQuery] = useState("");
   const [showAlert, setShowAlert] = useState(false);
 
   const handleSearch = () => {
@@ -46,7 +51,7 @@ function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
     } else {
       setShowAlert(false);
       onSearch(searchQuery);
-      handleCloseModal(); // 검색 후 모달 닫기
+      handleCloseModal();
     }
   };
 
@@ -60,7 +65,12 @@ function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
             <Typography
-              style={{ marginBottom: "30px", fontSize: "20px" }}
+              style={{
+                marginBottom: "30px",
+                fontSize: "20px",
+                fontFamily: "Jamsil",
+                fontWeight: 400,
+              }}
               variant="h5"
             >
               강의 검색
@@ -81,13 +91,19 @@ function SearchModal({ isOpen, handleCloseModal, lectureData, onSearch }) {
                   marginLeft: "20px",
                   backgroundColor: "#A7C1E1",
                   boxShadow: "none",
+                  fontFamily: "Jamsil",
+                  fontWeight: 300,
                 }}
               >
                 검색
               </Button>
             </div>
             {showAlert && (
-              <Typography variant="body1" className={classes.alert}>
+              <Typography
+                variant="body1"
+                className={classes.alert}
+                style={{ fontFamily: "Jamsil", fontWeight: 400 }}
+              >
                 강의명을 입력해주시길 바랍니다.
               </Typography>
             )}

@@ -6,30 +6,31 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
-    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
+    marginTop: "30px",
   },
   timetable: {
-    flex: 1,
     position: "sticky",
-    marginLeft: "50px",
-    backgroundColor: "white",
-    width: "500px",
+    width: "600px",
     marginRight: "30px",
+    marginLeft: 0,
   },
   classlist: {
-    flex: 1,
     position: "relative",
+    height: "800px",
     backgroundColor: "white",
-    marginRight: "50px",
   },
   timetableTitle: {
     backgroundColor: "#A7C1E1",
     color: "white",
     height: "40px",
     lineHeight: " 40px",
-    marginBottom: "20px",
     paddingLeft: "10px",
     marginTop: 0,
+    marginBottom: 0,
+    fontFamily: "Jamsil",
+    fontWeight: 500,
   },
   classlistTitle: {
     backgroundColor: "#A7C1E1",
@@ -39,6 +40,8 @@ const useStyles = makeStyles(() => ({
     lineHeight: " 40px",
     marginBottom: "20px",
     marginTop: 0,
+    fontFamily: "Jamsil",
+    fontWeight: 500,
   },
 }));
 

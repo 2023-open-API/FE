@@ -50,10 +50,15 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
             <Typography
-              style={{ fontSize: "20px", marginBottom: "20px" }}
+              style={{
+                fontSize: "20px",
+                marginBottom: "20px",
+                fontFamily: "Jamsil",
+                fontWeight: 400,
+              }}
               variant="h5"
             >
-              학과 선택
+              전공/영역
             </Typography>
             <ul className={classes.list}>
               {majorData.map((major) => (
@@ -62,7 +67,11 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
                   className={classes.listItem}
                   onClick={() => handleMajorSelect(major)}
                 >
-                  <Typography className={classes.listItemText} variant="body1">
+                  <Typography
+                    className={classes.listItemText}
+                    variant="body1"
+                    style={{ fontFamily: "Jamsil", fontWeight: 300 }}
+                  >
                     {major.major}
                   </Typography>
                   <ChevronRightIcon />
