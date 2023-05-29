@@ -4,6 +4,11 @@ body {
     font-size: 12px;
   }
   
+.title{
+  text-align: center;
+}
+
+
   /**  custom bootstrap - start */
   .btn {
     border-radius: 25px;
@@ -45,6 +50,7 @@ body {
   .render-range {
     padding-left: 12px;
     font-size: 19px;
+
     vertical-align: middle;
   }
   

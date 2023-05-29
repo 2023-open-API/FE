@@ -1,26 +1,19 @@
 /* eslint-disable no-console */
 import './app.css';
 
-import { EventObject, ExternalEventTypes, Options } from '@toast-ui/calendar';
-import { TZDate } from '@toast-ui/calendar';
-import { ChangeEvent, MouseEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Calendar from '@toast-ui/react-calendar';
 import { theme } from './Calendar/theme';
-import { addDate, addHours, subtractDate } from './Calendar/utils';
 
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
 
-const today = new TZDate();
-
 export function App({ view }) {
-  
   const calendarRef = useRef(null);
   const [selectedDateRangeText, setSelectedDateRangeText] = useState('');
   const [selectedView, setSelectedView] = useState(view);
-  const initialCalendars= [
+  const initialcolor = [
     {
       id: '0',
       name: 'Private',
@@ -37,133 +30,128 @@ export function App({ view }) {
     },
   ];
   
-
   const getCalInstance = useCallback(() => calendarRef.current?.getInstance?.(), []);
 
   const updateRenderRangeText = useCallback(() => {
     const calInstance = getCalInstance();
     if (!calInstance) {
       setSelectedDateRangeText('');
+      return;
     }
-  
-    const calDate = calInstance.getDate();
 
+    const calDate = calInstance.getDate();
     let year = calDate.getFullYear();
     let month = calDate.getMonth() + 1;
     let dateRangeText = `${year}-${month}`;
 
     setSelectedDateRangeText(dateRangeText);
-    }, [getCalInstance]
-  );
+  }, [getCalInstance]);
+
+  useEffect(() => {
+    setSelectedView(view);
+  }, [view]);
+
+  const onBeforeDeleteEvent = useCallback((res) => {
+    const { id, calendarId } = res;
+    getCalInstance().deleteEvent(id, calendarId);
+
+    // Remove event from localStorage
+    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+    const updatedEvents = savedEvents.filter((event) => event.id !== id);
+    localStorage.setItem('events', JSON.stringify(updatedEvents));
+  }, [getCalInstance]);
 
 
-    useEffect(() => {
-      setSelectedView(view);
-    }, [view]);
-
-
-  
-    useEffect(() => {
-      updateRenderRangeText();
-    }, [selectedView, updateRenderRangeText]);
-
-
-
-    const onBeforeDeleteEvent = (res) => {
-      const { id, calendarId } = res;
-      getCalInstance().deleteEvent(id, calendarId);
-    };
-
-    const onClickNavi = (ev) => {
-      if (ev.target.tagName === 'BUTTON') {
+  const onClickNavi = (ev) => {
+    if (ev.target.tagName === 'BUTTON') {
       const button = ev.target;
       const actionName = button.getAttribute('data-action').replace('move-', '');
       getCalInstance()[actionName]();
       updateRenderRangeText();
+    }
+  };
+
+  const onBeforeUpdateEvent = useCallback((updateData) => {
+    const targetEvent = updateData.event;
+    const changes = { ...updateData.changes };
+    getCalInstance().updateEvent(targetEvent.id, targetEvent.calendarId, changes);
+    
+    // Update event in localStorage
+    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+    const updatedEvents = savedEvents.map((event) => {
+      if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
+        return { ...event, ...changes };
       }
-    };
+      return event;
+    });
+    localStorage.setItem('events', JSON.stringify(updatedEvents));
+  }, [getCalInstance]);
 
-    const onBeforeUpdateEvent = (updateData) => {
-      const targetEvent = updateData.event;
-      const changes = { ...updateData.changes };
-      getCalInstance().updateEvent(targetEvent.id, targetEvent.calendarId, changes);
-    };
 
-    const onBeforeCreateEvent = (eventData) => {
-      
-      const event = {
 
+  const onBeforeCreateEvent = useCallback((eventData) => {
+    const event = {
       calendarId: eventData.calendarId || '',
       id: String(Math.random()),
       title: eventData.title,
-      isAllday: eventData.isAllday,
-      start: eventData.start,
-      end: eventData.end,
-      category: eventData.isAllday ? 'allday' : 'time',
+      isAllDay: eventData.isAllDay,
+      start: String(eventData.start),
+      end: String(eventData.end),
+      category: eventData.isAllDay ? 'allday' : 'time',
       dueDateClass: '',
       location: eventData.location,
       state: eventData.state,
-      isPrivate: eventData.isPrivate
-      };
-
-      getCalInstance().createEvents([event]);
     };
 
-    return (
+    getCalInstance().createEvents([event]);
+
+    // Save event to localStorage
+    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+    const updatedEvents = [...savedEvents, event];
+    localStorage.setItem('events', JSON.stringify(updatedEvents));
+  }, [getCalInstance]);
+
+
+  useEffect(() => {
+    // Load events from localStorage
+    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
+    getCalInstance().createEvents(savedEvents);
+  }, [getCalInstance]);
+
+
+  return (
+    <div>
+      <h1 className="title">Calendar</h1>
+
       <div>
-        <h1>📅 Calendar</h1>
-      <div>
+        <span className="buttonbunble">
+          <button type="button" className="btn" data-action="move-today" onClick={onClickNavi}>
+            Today
+          </button>
+          <button type="button" className="btn" data-action="move-prev" onClick={onClickNavi}>
+            Prev
+          </button>
+          <button type="button" className="btn" data-action="move-next" onClick={onClickNavi}>
+            Next
+          </button>
+        </span>
 
-      <span>
-        <button
-                type="button"
-                className="btn"
-                data-action="move-today"
-                onClick={onClickNavi}
-        >
-                Today
-        </button>
-        <button
-                type="button"
-                className="btn"
-                data-action="move-prev"
-                onClick={onClickNavi}
-        >
-                Prev
-        </button>
-        <button
-                type="button"
-                className="btn"
-                data-action="move-next"
-                onClick={onClickNavi}
-        >
-                Next
-        </button>
-      </span>
-
-      <span className="render-range">{selectedDateRangeText}</span>
-      
+        <span className="render-range">{selectedDateRangeText}</span>
       </div>
-        <Calendar
-          height="600px"
 
-         calendars={initialCalendars}
-
-          month={{ startDayOfWeek: 1, isAlways6Weeks: false}}
-
-          theme={theme} //테마옵션
-
-          useDetailPopup={true}
-          useFormPopup={true}
-          
-          view={selectedView}
-
-          ref={calendarRef}
-
-          onBeforeDeleteEvent={onBeforeDeleteEvent}
-          onBeforeUpdateEvent={onBeforeUpdateEvent}
-          onBeforeCreateEvent={onBeforeCreateEvent}
-        />
-      </div>
-    );
-  }    
+      <Calendar
+        height="600px"
+        calendars={initialcolor}
+        month={{ startDayOfWeek: 1, isAlways6Weeks: false }}
+        theme={theme} //테마옵션
+        useDetailPopup={true}
+        useFormPopup={true}
+        view={selectedView}
+        ref={calendarRef}
+        onBeforeDeleteEvent={onBeforeDeleteEvent}
+        onBeforeUpdateEvent={onBeforeUpdateEvent}
+        onBeforeCreateEvent={onBeforeCreateEvent}
+      />
+    </div>
+  );
+}
