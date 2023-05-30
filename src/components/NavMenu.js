@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function NavMenu() {
+function NavMenu({ loggedInUser }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -46,7 +46,9 @@ function NavMenu() {
           <Link className={classes.navbtn} to={"/timetable"}>
             시간표
           </Link>
-          <span></span>
+          {loggedInUser && (
+            <span className={classes.navbtn}>{loggedInUser.name}님</span>
+          )}
         </div>
       </nav>
     </div>
