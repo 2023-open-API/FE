@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import Home from "./Home/Home";
@@ -9,24 +9,38 @@ import "./fonts/fonts.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUser, setLoggedInUser] = useState(null);
+  const [signeduser, setSignedUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({
+    userId: "",
+    password: "",
+  });
 
-  const handleLogin = (user) => {
-    // 로그인 처리 로직 작성
-    // ...
-    setLoggedInUser(user);
+  const setLoginPage = (userInfo) => {
     setIsLoggedIn(true);
+    setLoggedInUser(userInfo);
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
-    <div className={isLoggedIn ? "app-logged-in" : "app-logged-out"}>
+    <div>
       <BrowserRouter>
-        {isLoggedIn && <NavMenu loggedInUser={loggedInUser} />}
+        {isLoggedIn && <NavMenu signeduser={signeduser} />}
         <Routes>
           {!isLoggedIn && (
-            <Route path="/login" element={<Login onLogin={handleLogin} />} />
+            <Route path="/" element={<Login setLoginPage={setLoginPage} />} />
           )}
-          {!isLoggedIn && <Route path="/signup" element={<Signup />} />}
+          {!isLoggedIn && (
+            <Route
+              path="/signup"
+              element={<Signup setSignedUser={setSignedUser} />}
+            />
+          )}
           {isLoggedIn && (
             <>
               <Route path="/" element={<Home />} />

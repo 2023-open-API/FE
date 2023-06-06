@@ -2,6 +2,7 @@ import { makeStyles } from "@mui/styles";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
+import { authUser } from "../api/api";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -23,7 +24,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
   },
-
   loginbtn: {
     marginTop: "60px",
     border: "none",
@@ -60,11 +60,11 @@ const StyledInput = styled.input`
     font-size: 16px;
     color: #607b9b;
   }
-`;
+}`;
 
-function Login({ onLogin }) {
+function Login({ setLoginPage }) {
   const classes = useStyles();
-  const [id, setId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -75,46 +75,69 @@ function Login({ onLogin }) {
     };
   }, []);
 
-  const moveToSignup = () => {
-    navigate("/signup");
-  };
-
-  const handleIdChange = (event) => {
-    setId(event.target.value);
+  const handleStudentIdChange = (event) => {
+    setStudentId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onLogin();
+  const handleLogin = async () => {
+    try {
+      if (!studentId || !password) {
+        alert("학번과 비밀번호를 모두 입력해주세요.");
+        return;
+      } else {
+        const userInfo = {
+          studentId: Number(studentId),
+          password: password,
+        };
+        console.log(userInfo);
+        const response = await authUser(userInfo);
+        if (response && response.status === 200) {
+          const token = response.data.token;
+          localStorage.setItem("token", token);
+          setLoginPage(userInfo);
+          alert("로그인되었습니다.");
+          navigate("/home");
+        } else {
+          alert("아이디와 비밀번호를 다시 확인해주세요.");
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      alert("로그인에 실패하셨습니다.");
+    }
   };
 
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>PLANU</h1>
-      <form onSubmit={handleSubmit} className={classes.form}>
+      <form className={classes.form}>
         <StyledInput
           type="text"
           placeholder="학번"
-          value={id}
-          onChange={handleIdChange}
-          name="id"
+          onChange={handleStudentIdChange}
+          name="studentId"
         />
         <StyledInput
           type="password"
           placeholder="Password"
-          value={password}
           onChange={handlePasswordChange}
           name="password"
         />
-        <button className={classes.loginbtn} type="submit">
+        <button
+          type="button"
+          className={classes.loginbtn}
+          onClick={() => {
+            handleLogin();
+          }}
+        >
           Login
         </button>
       </form>
-      <Link className={classes.signup} to="/signup">
+      <Link className={classes.signup} to={{ pathname: "/signup" }}>
         Sign up
       </Link>
     </div>

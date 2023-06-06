@@ -37,7 +37,6 @@ const theme = createTheme();
 function SearchModal({
   isOpen,
   handleCloseModal,
-  lectureData,
   onSearch,
   searchQuery,
   setSearchQuery,

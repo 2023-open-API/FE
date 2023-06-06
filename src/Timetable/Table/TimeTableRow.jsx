@@ -37,13 +37,18 @@ const TimeTableRow = ({
 
   return (
     <TableRow key={startHour} sx={{ fontFamily: "Jamsil", fontWeight: 300 }}>
-      <TableCell>{`${startHour}:00 `}</TableCell>
+      <TableCell style={{ width: "80px" }}>{`${startHour}:00 `}</TableCell>
       {daysOfWeek.map((day, col) => {
-        const lecturesOfDay = selectedLectures.filter(
-          (lecture) =>
-            lecture.day.includes(day) &&
-            Number(lecture.startTime.split(":")[0]) <= startHour &&
-            Number(lecture.endTime.split(":")[0]) >= endHour
+        const lecturesOfDay = selectedLectures.filter((lecture) =>
+          lecture.courseTimeResponses.some((time) => {
+            const startTimeHour = Number(time.startTime.split(":")[0]);
+            const endTimeHour = Number(time.endTime.split(":")[0]);
+            return (
+              time.day === day &&
+              startTimeHour <= startHour &&
+              endTimeHour >= endHour
+            );
+          })
         );
 
         return (
@@ -52,7 +57,7 @@ const TimeTableRow = ({
             startHour={startHour}
             endHour={endHour}
             col={col}
-            lecturesOfDay={lecturesOfDay}
+            lecturesOfDay={lecturesOfDay || []}
             assignedColors={assignedColors}
             onDeleteLecture={onDeleteLecture}
           />

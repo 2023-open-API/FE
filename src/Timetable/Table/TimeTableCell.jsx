@@ -27,6 +27,7 @@ function TimeTableCell({
     position: "relative",
     fontFamily: "Jamsil",
     fontWeight: 200,
+    width: "110px",
   };
 
   const getColorByLecture = (lectureName) => {
@@ -35,21 +36,29 @@ function TimeTableCell({
 
   const isFirstCell =
     lecturesOfDay.length > 0 &&
-    startHour === Number(lecturesOfDay[0].startTime.split(":")[0]);
+    lecturesOfDay[0].courseTimeResponses.some((courseTime) => {
+      const startTime = Number(courseTime.startTime.split(":")[0]);
+      return startHour === startTime;
+    });
 
   const coloredCells = lecturesOfDay.flatMap((lecture) => {
-    const lectureStartHour = Number(lecture.startTime.split(":")[0]);
-    const lectureEndHour = Number(lecture.endTime.split(":")[0]);
-    const startRow = lectureStartHour - 9;
-    const endRow = lectureEndHour - 9 - 1;
+    const courseTimeResponses = lecture.courseTimeResponses;
+
+    if (!courseTimeResponses || courseTimeResponses.length === 0) {
+      return [];
+    }
 
     const cells = [];
 
-    for (let row = startRow; row <= endRow; row++) {
-      for (let hour = startHour; hour <= endHour; hour++) {
-        cells.push(`${row}-${col}-${hour}`);
+    courseTimeResponses.forEach((courseTime) => {
+      const startTime = Number(courseTime.startTime.split(":")[0]);
+      const endTime = Number(courseTime.endTime.split(":")[0]);
+
+      for (let hour = startTime; hour <= endTime; hour++) {
+        cells.push(`${startHour - 9}-${col}-${hour}`);
       }
-    }
+    });
+
     return cells;
   });
 
@@ -84,6 +93,8 @@ function TimeTableCell({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      {console.log(isFirstCell)}
+      {console.log(coloredCells)}
       {lecturesOfDay.map((lecture, index) => (
         <span key={index}>
           {index === 0 && isFirstCell && (
@@ -91,9 +102,23 @@ function TimeTableCell({
               <h4 style={{ fontWeight: 300, fontSize: "80%", margin: 0 }}>
                 {lecture.name}
               </h4>
-              <p style={{ fontSize: "60%", lineHeight: 0 }}>
-                {lecture.startTime} {lecture.room}
-              </p>
+              {coloredCells
+                .filter((cell) =>
+                  cell.includes(`${startHour - 9}-${col}-${startHour}`)
+                )
+                .map((cell) => {
+                  const [lectureStartHour] = cell.split("-");
+                  const startTime = Number(lectureStartHour) + 9;
+                  return (
+                    <p key={cell} style={{ fontSize: "60%", lineHeight: 0 }}>
+                      {
+                        lecture.courseTimeResponses.find((courseTime) =>
+                          courseTime.startTime.includes(`${startTime}:`)
+                        ).startTime
+                      }
+                    </p>
+                  );
+                })}
             </>
           )}
         </span>
@@ -109,7 +134,7 @@ function TimeTableCell({
           }}
           onClick={handleDeleteLecture}
         >
-          <FaTimes style={{ margin: "5px", color: "rgba(0, 0, 0, 0.5)" }} />
+          <FaTimes style={{ margin: "2px", color: "rgba(0, 0, 0)" }} />
         </div>
       )}
     </TableCell>

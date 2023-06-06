@@ -33,24 +33,23 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function NavMenu({ loggedInUser }) {
+function NavMenu({ signeduser }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
       <nav>
         <h2 className={classes.navTitle}>PLANU</h2>
         <div className={classes.navMenu}>
-          <Link className={classes.navbtn} to={"/"}>
+          <Link className={classes.navbtn} to={{ pathname: "/" }}>
             HOME
           </Link>
-          <Link className={classes.navbtn} to={"/timetable"}>
+          <Link className={classes.navbtn} to={{ pathname: "/timetable" }}>
             시간표
           </Link>
-          {loggedInUser && (
-            <span className={classes.navbtn}>{loggedInUser.name}님</span>
-          )}
+          <span className={classes.navbtn}>{signeduser.name}님</span>
         </div>
       </nav>
+      {console.log(signeduser)}
     </div>
   );
 }

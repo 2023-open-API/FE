@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import TimeTable from "../Timetable/Table/TimeTable";
 import ClassList from "../Timetable/ClassList/ClassList";
 import { makeStyles } from "@mui/styles";
+import Loading from "../Timetable/Loading/Loading";
+import { useLocation } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
   classlist: {
     position: "relative",
-    height: "800px",
+    height: "790px",
     backgroundColor: "white",
   },
   timetableTitle: {
@@ -46,7 +48,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 function TimeTableApp() {
+  const location = useLocation();
   const classes = useStyles();
+  const [loading, setLoading] = useState(true);
   const [selectedLectures, setSelectedLectures] = useState([]);
 
   useEffect(() => {
@@ -56,8 +60,18 @@ function TimeTableApp() {
     }
   }, []);
 
+  const onDeleteLecture = (lectureName) => {
+    setSelectedLectures((selectedLectures) => {
+      const updatedLectures = selectedLectures.filter(
+        (lecture) => lecture.name !== lectureName
+      );
+      localStorage.setItem("selectedLectures", JSON.stringify(updatedLectures));
+      return updatedLectures;
+    });
+  };
+
   const addLecture = (lecture) => {
-    if (!selectedLectures.find((selected) => selected.id === lecture.id)) {
+    if (!selectedLectures.find((selected) => selected.code === lecture.code)) {
       const updatedLectures = [...selectedLectures, lecture];
       setSelectedLectures(updatedLectures);
       localStorage.setItem("selectedLectures", JSON.stringify(updatedLectures));
@@ -66,14 +80,9 @@ function TimeTableApp() {
     }
   };
 
-  const onDeleteLecture = (lectureName) => {
-    setSelectedLectures((prevLectures) =>
-      prevLectures.filter((lecture) => lecture.name !== lectureName)
-    );
-  };
-
   return (
     <div className={classes.container}>
+      {loading && location.pathname === "/timetable" && <Loading />}
       <div className={classes.timetable}>
         <h3 className={classes.timetableTitle}>시간표</h3>
         <TimeTable
@@ -81,10 +90,12 @@ function TimeTableApp() {
           onDeleteLecture={onDeleteLecture}
         />
       </div>
-      <div className={classes.classlist}>
-        <h3 className={classes.classlistTitle}>수업 정보</h3>
-        <ClassList addLecture={addLecture} />
-      </div>
+      {location.pathname === "/timetable" && (
+        <div className={classes.classlist}>
+          <h3 className={classes.classlistTitle}>수업 정보</h3>
+          <ClassList addLecture={addLecture} setLoading={setLoading} />
+        </div>
+      )}
     </div>
   );
 }

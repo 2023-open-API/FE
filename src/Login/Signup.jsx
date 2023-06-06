@@ -2,6 +2,7 @@ import { makeStyles } from "@mui/styles";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
+import { addUser, authUser } from "../api/api";
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -68,12 +69,40 @@ const StyledInput = styled.input`
   }
 `;
 
-function Signup() {
+function Signup({ setSignedUser }) {
   const classes = useStyles();
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const handleSignup = async (event) => {
+    event.preventDefault();
+    try {
+      const userInfo = {
+        name: name,
+        password: password,
+        studentId: Number(studentId),
+      };
+      console.log(userInfo);
+      setSignedUser(userInfo);
+      await addUser(userInfo);
+      navigate("/");
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        alert("서버 응답 오류가 발생했습니다.");
+      } else if (error.request) {
+        console.log(error.request);
+        alert("요청이 전송되지 않았습니다.");
+      } else {
+        console.log("Error", error.message);
+        alert("오류가 발생했습니다.");
+      }
+    }
+  };
 
   useEffect(() => {
     document.body.style.backgroundColor = "#84A1C4";
@@ -82,20 +111,16 @@ function Signup() {
     };
   }, []);
 
-  const moveToLogin = () => {
-    navigate("/login");
-  };
-
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
 
-  const handleIdChange = (event) => {
-    setId(event.target.value);
+  const handleStudentIdChange = (event) => {
+    setStudentId(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.password);
+    setPassword(event.target.value);
   };
 
   return (
@@ -104,22 +129,30 @@ function Signup() {
       <form>
         <div>
           <label className={classes.labels}>이름</label>
-          <StyledInput type="text" value={name} />
+          <StyledInput type="text" value={name} onChange={handleNameChange} />
         </div>
         <div>
           <label className={classes.labels}>학번</label>
-          <StyledInput type="text" value={id} />
+          <StyledInput
+            type="text"
+            value={studentId}
+            onChange={handleStudentIdChange}
+          />
         </div>
         <div>
           <label className={classes.labels}>e-learning password</label>
-          <StyledInput type="password" value={password} />
+          <StyledInput
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
         </div>
       </form>
 
-      <button className={classes.signupbtn} type="submit" onClick={moveToLogin}>
+      <button className={classes.signupbtn} onClick={handleSignup}>
         Sign up
       </button>
-      <Link className={classes.login} to="/login">
+      <Link className={classes.login} to={{ pathname: "/" }}>
         Login
       </Link>
     </div>

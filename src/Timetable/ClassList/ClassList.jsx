@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -16,6 +16,8 @@ import MajorModal from "../Modal/MajorModal";
 import GradeModal from "../Modal/GradeModal";
 import ModalButtons from "./ModalButtons";
 import SearchModal from "../Modal/SearchModal";
+import axios from "axios";
+import SERVER from "../../api/url";
 
 const useStyles = makeStyles({
   tableContainer: {
@@ -40,54 +42,11 @@ const useStyles = makeStyles({
 
 const theme = createTheme({
   palette: {
-    divider: "#607B9B", // 구분선의 색상을 변경할 값
+    divider: "#607B9B",
   },
 });
 
-const lectureData = [
-  {
-    id: 1,
-    grade: 2,
-    name: "수학",
-    code: "MATH101-01",
-    professor: "홍길동",
-    day: ["월", "화"],
-    startTime: "10:00",
-    endTime: "12:00",
-    credits: 3,
-    major: "전자공학과",
-    room: "공2",
-  },
-  {
-    id: 2,
-    grade: 3,
-    name: "과학",
-    code: "SCI201-02",
-    professor: "이순신",
-    day: ["수"],
-    startTime: "14:00",
-    endTime: "16:00",
-    credits: 4,
-    major: "컴퓨터공학과",
-    room: "공5",
-  },
-  {
-    id: 3,
-    grade: 1,
-    name: "영어",
-    code: "ENG301-03",
-    professor: "김철수",
-    day: ["수"],
-    startTime: "09:00",
-    endTime: "11:00",
-    credits: 2,
-    major: "화학공학과",
-    room: "공2",
-  },
-  // ...
-];
-
-function ClassList({ addLecture }) {
+function ClassList({ addLecture, setLoading }) {
   const classes = useStyles();
   const [isMajorModalOpen, setIsMajorModalOpen] = useState(false);
   const [isGradeModalOpen, setIsGradeModalOpen] = useState(false);
@@ -97,42 +56,61 @@ function ClassList({ addLecture }) {
   const [searchedLecture, setSearchedLecture] = useState(null);
   const [showNoResultAlert, setShowNoResultAlert] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [lectureData, setLectureData] = useState([]);
+  const [courseTimeData, setCourseTimeData] = useState([]);
+
+  const fetchLectureData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `${SERVER}/api/applicationCourse/2022/2`
+      );
+      const lectureData = response.data;
+      const courseTimeData = [];
+      for (let i = 0; i < lectureData.length; i++) {
+        courseTimeData.push(lectureData[i]["courseTimeResponses"]);
+      }
+
+      setCourseTimeData(courseTimeData);
+      setLectureData(lectureData);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLectureData();
+  }, []);
 
   const handleOpenMajorModal = () => {
     setIsMajorModalOpen(true);
   };
-
   const handleCloseMajorModal = () => {
     setIsMajorModalOpen(false);
   };
-
   const handleOpenGradeModal = () => {
     setIsGradeModalOpen(true);
   };
-
   const handleCloseGradeModal = () => {
     setIsGradeModalOpen(false);
   };
-
   const handleOpenSearchModal = () => {
     setIsSearchModalOpen(true);
   };
-
   const handleCloseSearchModal = () => {
     setIsSearchModalOpen(false);
     setSearchQuery("");
   };
-
   const handleSelectMajor = (major) => {
     setSelectedMajor(major);
     handleCloseMajorModal();
   };
-
   const handleSelectGrade = (grade) => {
     setSelectedGrade(grade);
     handleCloseGradeModal();
   };
-
   const handleSearchLecture = (lectureName) => {
     const result = lectureData.filter(
       (lecture) => lecture.name === lectureName
@@ -163,6 +141,7 @@ function ClassList({ addLecture }) {
             component={Paper}
             className={classes.tableContainer}
             elevation={0}
+            style={{ maxHeight: "690px", overflow: "auto" }}
           >
             <Table
               sx={{
@@ -173,6 +152,12 @@ function ClassList({ addLecture }) {
                   fontFamily: "Jamsil",
                   fontWeight: 300,
                 },
+                "& .MuiTableHead-root": {
+                  position: "sticky",
+                  top: 0,
+                  zIndex: 1,
+                  backgroundColor: "#fff",
+                },
               }}
             >
               <TableHead>
@@ -181,8 +166,8 @@ function ClassList({ addLecture }) {
                   <TableCell>강의명</TableCell>
                   <TableCell>학수번호-분반</TableCell>
                   <TableCell>담당교수</TableCell>
-                  <TableCell>강의시간</TableCell>
                   <TableCell>학점</TableCell>
+                  <TableCell>강의시간</TableCell>
                   <TableCell>추가</TableCell>
                 </TableRow>
               </TableHead>
@@ -190,21 +175,24 @@ function ClassList({ addLecture }) {
                 {(searchedLecture ? searchedLecture : lectureData)
                   .filter(
                     (lecture) =>
-                      (selectedMajor === null ||
-                        lecture.major === selectedMajor) &&
-                      (selectedGrade === null ||
-                        lecture.grade === selectedGrade)
+                      // (selectedMajor === null ||
+                      //   lecture.major === selectedMajor) &&
+                      selectedGrade === null || lecture.grade === selectedGrade
                   )
-                  .map((lecture) => (
-                    <TableRow key={lecture.id}>
+                  .map((lecture, index) => (
+                    <TableRow key={index}>
                       <TableCell>{lecture.grade}</TableCell>
                       <TableCell>{lecture.name}</TableCell>
                       <TableCell>{lecture.code}</TableCell>
                       <TableCell>{lecture.professor}</TableCell>
-                      <TableCell>{`${lecture.day.join(", ")} ${
-                        lecture.startTime
-                      }-${lecture.endTime}`}</TableCell>
-                      <TableCell>{lecture.credits}</TableCell>
+                      <TableCell>{lecture.credit}</TableCell>
+                      <TableCell>
+                        {courseTimeData[index].map((order, orderIndex) => (
+                          <div key={orderIndex}>
+                            {`${order.day} ${order.startTime}-${order.endTime}`}
+                          </div>
+                        ))}
+                      </TableCell>
                       <TableCell>
                         <button
                           onClick={() => addLecture(lecture)}
@@ -228,13 +216,13 @@ function ClassList({ addLecture }) {
             </Table>
           </TableContainer>
 
-          <MajorModal
+          {/* <MajorModal
             isOpen={isMajorModalOpen}
             majorData={lectureData}
             selectedMajor={selectedMajor}
             handleCloseModal={handleCloseMajorModal}
             onSelect={handleSelectMajor}
-          />
+          /> */}
           <GradeModal
             isOpen={isGradeModalOpen}
             selectedGrade={selectedGrade}
