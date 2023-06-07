@@ -126,6 +126,13 @@ function ClassList({ addLecture, setLoading }) {
     setSearchQuery("");
   };
 
+  const handleResetFilter = () => {
+    setSelectedMajor(null);
+    setSelectedGrade(null);
+    setSearchedLecture(null);
+    setShowNoResultAlert(false);
+  };
+
   return (
     <div>
       <div style={{ position: "sticky", marginLeft: "20px" }}>
@@ -133,6 +140,7 @@ function ClassList({ addLecture, setLoading }) {
           handleOpenMajorModal={handleOpenMajorModal}
           handleOpenGradeModal={handleOpenGradeModal}
           handleOpenSearchModal={handleOpenSearchModal}
+          handleResetFilter={handleResetFilter}
         />
       </div>
       <div>
@@ -175,9 +183,10 @@ function ClassList({ addLecture, setLoading }) {
                 {(searchedLecture ? searchedLecture : lectureData)
                   .filter(
                     (lecture) =>
-                      // (selectedMajor === null ||
-                      //   lecture.major === selectedMajor) &&
-                      selectedGrade === null || lecture.grade === selectedGrade
+                      (selectedMajor === null ||
+                        lecture.major === selectedMajor) &&
+                      (selectedGrade === null ||
+                        Number(lecture.grade) === selectedGrade)
                   )
                   .map((lecture, index) => (
                     <TableRow key={index}>

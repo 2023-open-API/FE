@@ -30,7 +30,11 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {isLoggedIn && <NavMenu signeduser={signeduser} />}
+        {isLoggedIn && (
+          <div>
+            <NavMenu signeduser={signeduser} />
+          </div>
+        )}
         <Routes>
           {!isLoggedIn && (
             <Route path="/" element={<Login setLoginPage={setLoginPage} />} />

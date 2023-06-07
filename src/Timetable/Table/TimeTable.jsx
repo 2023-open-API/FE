@@ -66,7 +66,6 @@ function TimeTable({ selectedLectures, onDeleteLecture }) {
                 onDeleteLecture={onDeleteLecture}
               />
             ))}
-            {console.log(selectedLectures)}
           </TableBody>
         </Table>
       </TableContainer>

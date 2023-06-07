@@ -69,6 +69,27 @@ const StyledInput = styled.input`
   }
 `;
 
+const StyledButton = styled.button`
+  margin-top: 60px;
+  border: none;
+  background-color: #607b9b;
+  color: #cee0f4;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  font-family: "Jamsil";
+  font-weight: 400;
+  transition: all 0.9s, color 0.3;
+
+  &:hover {
+    border: 3px solid #607b9b;
+    background-color: #cee0f4;
+    color: #607b9b;
+  }
+`;
+
 function Signup({ setSignedUser }) {
   const classes = useStyles();
   const [name, setName] = useState("");
@@ -85,6 +106,7 @@ function Signup({ setSignedUser }) {
         studentId: Number(studentId),
       };
       console.log(userInfo);
+      localStorage.setItem("userName", userInfo.name);
       setSignedUser(userInfo);
       await addUser(userInfo);
       navigate("/");
@@ -149,9 +171,7 @@ function Signup({ setSignedUser }) {
         </div>
       </form>
 
-      <button className={classes.signupbtn} onClick={handleSignup}>
-        Sign up
-      </button>
+      <StyledButton onClick={handleSignup}>Sign up</StyledButton>
       <Link className={classes.login} to={{ pathname: "/" }}>
         Login
       </Link>

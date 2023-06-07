@@ -46,7 +46,9 @@ function NavMenu({ signeduser }) {
           <Link className={classes.navbtn} to={{ pathname: "/timetable" }}>
             시간표
           </Link>
-          <span className={classes.navbtn}>{signeduser.name}님</span>
+          <span className={classes.navbtn}>
+            {localStorage.getItem("userName")}님
+          </span>
         </div>
       </nav>
       {console.log(signeduser)}

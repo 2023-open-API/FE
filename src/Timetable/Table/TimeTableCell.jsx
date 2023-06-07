@@ -93,8 +93,6 @@ function TimeTableCell({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {console.log(isFirstCell)}
-      {console.log(coloredCells)}
       {lecturesOfDay.map((lecture, index) => (
         <span key={index}>
           {index === 0 && isFirstCell && (

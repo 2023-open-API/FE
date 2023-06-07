@@ -62,6 +62,27 @@ const StyledInput = styled.input`
   }
 }`;
 
+const StyledButton = styled.button`
+  margin-top: 60px;
+  border: none;
+  background-color: #607b9b;
+  color: #cee0f4;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 30px;
+  margin-bottom: 40px;
+  font-family: "Jamsil";
+  font-weight: 400;
+  transition: all 0.9s, color 0.3;
+
+  &:hover {
+    border: 3px solid #607b9b;
+    background-color: #cee0f4;
+    color: #607b9b;
+  }
+`;
+
 function Login({ setLoginPage }) {
   const classes = useStyles();
   const [studentId, setStudentId] = useState("");
@@ -100,7 +121,7 @@ function Login({ setLoginPage }) {
           localStorage.setItem("token", token);
           setLoginPage(userInfo);
           alert("로그인되었습니다.");
-          navigate("/home");
+          navigate("/");
         } else {
           alert("아이디와 비밀번호를 다시 확인해주세요.");
         }
@@ -127,15 +148,14 @@ function Login({ setLoginPage }) {
           onChange={handlePasswordChange}
           name="password"
         />
-        <button
+        <StyledButton
           type="button"
-          className={classes.loginbtn}
           onClick={() => {
             handleLogin();
           }}
         >
           Login
-        </button>
+        </StyledButton>
       </form>
       <Link className={classes.signup} to={{ pathname: "/signup" }}>
         Sign up

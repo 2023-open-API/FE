@@ -3,6 +3,7 @@ import { Modal, Fade, Typography } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { FaTimes } from "react-icons/fa";
 
 const useStyles = makeStyles(() => ({
   modal: {
@@ -28,9 +29,15 @@ const useStyles = makeStyles(() => ({
   },
   listItemText: {
     marginRight: "5px",
+    flexGrow: 1,
   },
   chevronIcon: {
     marginLeft: "5px",
+  },
+  closeIcon: {
+    fontSize: "15px",
+    color: "#A7C1E1",
+    margin: "6px",
   },
 }));
 
@@ -56,17 +63,24 @@ function GradeModal({
       <Modal className={classes.modal} open={isOpen} onClose={handleCloseModal}>
         <Fade in={isOpen}>
           <div className={classes.modalContent}>
-            <Typography
-              style={{
-                fontSize: "20px",
-                marginBottom: "25px",
-                fontFamily: "Jamsil",
-                fontWeight: 400,
-              }}
-              variant="h5"
-            >
-              학년 선택
-            </Typography>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography
+                style={{
+                  fontSize: "20px",
+                  marginBottom: "25px",
+                  fontFamily: "Jamsil",
+                  fontWeight: 400,
+                }}
+                variant="h5"
+              >
+                학년 선택
+              </Typography>
+              <FaTimes
+                onClick={handleCloseModal}
+                className={classes.closeIcon}
+              />
+            </div>
+
             {grades.map((grade) => (
               <div
                 key={grade}
@@ -86,6 +100,7 @@ function GradeModal({
           </div>
         </Fade>
       </Modal>
+      {console.log(selectedGrade)}
     </ThemeProvider>
   );
 }

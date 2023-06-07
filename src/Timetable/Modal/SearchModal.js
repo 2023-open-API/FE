@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Fade, Typography, TextField, Button } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/system";
+import { FaTimes } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -15,20 +16,30 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid black",
     borderRadius: "5px",
     outline: "none",
-    width: "300px",
+    width: "400px",
   },
   searchContainer: {
     display: "flex",
     alignItems: "center",
     marginBottom: "10px",
+    justifyContent: "space-between",
   },
   searchInput: {
     flexGrow: 1,
-    marginRight: "10px",
+    width: "100%",
+  },
+  closeButton: {
+    padding: "5px",
+    cursor: "pointer",
   },
   alert: {
     marginTop: "10px",
     color: "red",
+  },
+  closeIcon: {
+    fontSize: "15px",
+    color: "#A7C1E1",
+    marginLeft: "5px",
   },
 }));
 
@@ -69,10 +80,16 @@ function SearchModal({
                 fontSize: "20px",
                 fontFamily: "Jamsil",
                 fontWeight: 400,
+                display: "flex",
+                justifyContent: "space-between",
               }}
               variant="h5"
             >
               강의 검색
+              <FaTimes
+                onClick={handleCloseModal}
+                className={classes.closeIcon}
+              />
             </Typography>
             <div className={classes.searchContainer}>
               <TextField
@@ -82,16 +99,17 @@ function SearchModal({
                 value={searchQuery}
                 onChange={handleInputChange}
               />
+
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleSearch}
                 style={{
-                  marginLeft: "20px",
                   backgroundColor: "#A7C1E1",
                   boxShadow: "none",
                   fontFamily: "Jamsil",
                   fontWeight: 300,
+                  marginLeft: 20,
                 }}
               >
                 검색
