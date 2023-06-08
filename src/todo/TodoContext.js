@@ -19,7 +19,7 @@ const initialTodos = localStorage.getItem('todos')
           return toggledTodos;
         case 'EDIT':
           const editedTodos = state.map((todo) =>
-            todo.id === action.id ? { ...todo, text: action.text } : todo
+            todo.id === action.id ? { ...todo, text: action.text, detail:action.detail } : todo
           );
           localStorage.setItem('todos', JSON.stringify(editedTodos));
           return editedTodos;

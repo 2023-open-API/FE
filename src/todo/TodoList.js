@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem';
-import { useTodoState } from '../TodoContext';
+import { useTodoState } from './TodoContext';
 
 const TodoListBlock = styled.div`
   flex: 1;
@@ -20,6 +20,7 @@ function TodoList() {
           key={todo.id}
           id={todo.id}
           text={todo.text}
+          detail={todo.detail}
           done={todo.done}
         />
       ))}
