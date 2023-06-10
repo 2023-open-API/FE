@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { MdDone, MdDelete } from 'react-icons/md';
+import { MdDone } from 'react-icons/md';
 import { useTodoDispatch } from './TodoContext';
 
 const Remove = styled.div`
