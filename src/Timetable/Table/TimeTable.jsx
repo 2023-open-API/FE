@@ -15,9 +15,8 @@ const useStyles = makeStyles({
   container: {
     boxShadow: "none",
   },
-  tableContainer: {
-    //border: "1px solid #A4A4A4",
-  },
+  tableContainer: {},
+
   table: {
     borderSpacing: 0,
     borderBottom: "none",

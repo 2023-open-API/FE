@@ -68,7 +68,6 @@ left: 50%;
 transform: translate(-50%, -50%);
 background: white;
 border-radius: 19px;
-border: 1px solid #e9ecef;
 display: flex;
 flex-direction: column;
 

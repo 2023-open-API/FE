@@ -5,7 +5,7 @@ import { useTodoDispatch, useTodoNextId } from './TodoContext';
 const ToggleButton = styled.div`
   color: #ffffff;
   cursor: pointer;
-  margin-top: 18px;
+  margin-top: 5px;
   width: 40px;
   height: 40px;
   font-size: 30px;
@@ -21,7 +21,6 @@ const InsertFormPositioner = styled.div`
   transform: translate(-50%, -50%);
   background: white;
   border-radius: 19px;
-  border: 1px solid #e9ecef;
   display: flex;
   flex-direction: column;
 

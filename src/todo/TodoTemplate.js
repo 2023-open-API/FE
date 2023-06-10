@@ -5,12 +5,10 @@ import TodoCreate from './TodoCreate';
 import { TodoProvider } from './TodoContext';
 
 const TodoTemplateBlock = styled.div`
-  width: 750px;
-  height: 550px;
-  margin: 0 auto; /* 페이지 중앙에 나타나도록 설정 */
+  width: 450px;
+  height: 300px;
 
-  margin-top: 96px;
-  margin-bottom: 32px;
+  margin: 32px 40px 0px 40px;
   display: flex;
   flex-direction: column;
 `;
@@ -28,16 +26,16 @@ const TodoHeadBlock = styled.div`
   }
 
   .todo {
-    font-size: 30px;
-    margin: 20px 10px;
+    font-size: 22px;
+    margin: 12px 10px;
     color: #FFFFFF;
     font-weight: bold;
   }
 
   .date {
     color: #FFFFFF;
-    font-size: 17px;
-    margin: 24px 2px;
+    font-size: 12px;
+    margin: 16px 5px;
   }
 `;
 
