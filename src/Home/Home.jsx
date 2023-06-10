@@ -4,6 +4,14 @@ import { makeStyles } from "@mui/styles";
 import TodoTemplate from "../todo/TodoTemplate";
 
 const useStyles = makeStyles({
+  container: {},
+  tableContainer: {
+    width: "510px",
+    height: "480px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    marginTop: "10px",
+  },
   table: {},
 });
 
@@ -11,10 +19,14 @@ function Home() {
   const classes = useStyles();
 
   return (
-    <div>
-      <TodoTemplate />
-      <div className={classes.table}>
-        <TimeTableApp />
+    <div className={classes.container}>
+      <div>
+        <TodoTemplate />
+      </div>
+      <div className={classes.tableContainer}>
+        <div className={classes.table}>
+          <TimeTableApp />
+        </div>
       </div>
     </div>
   );

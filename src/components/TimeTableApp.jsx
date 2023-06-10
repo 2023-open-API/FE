@@ -9,8 +9,6 @@ const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
     width: "100%",
-    width: "480px",
-    height: "300px",
     marginTop: "30px",
     marginBottom: "30px",
     marginLeft: "40px",

@@ -248,6 +248,7 @@ function ClassList({ addLecture, setLoading }) {
           />
         </ThemeProvider>
       </div>
+      {console.log(lectureData)}
     </div>
   );
 }
