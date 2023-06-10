@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Gmarket San";
+  src: url("./GmarketSansLight.woff") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gmarket San";
+  src: url("./GmarketSansMedium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gmarket San";
+  src: url("./GmarketSansBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-1-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-2-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-3-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-4-Medium_1.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-5-Bold_1.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jamsil";
+  src: url("./The-Jamsil-OTF-6-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
