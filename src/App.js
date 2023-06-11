@@ -1,32 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NavMenu from "./components/NavMenu";
-import Home from "./Home/Home";
-import Login from "./Login/Login";
-import TimeTableApp from "./components/TimeTableApp";
-import Signup from "./Login/Signup";
-import "./fonts/fonts.css";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [signeduser, setSignedUser] = useState({});
-  const [loggedInUser, setLoggedInUser] = useState({
-    userId: "",
-    password: "",
-  });
-
-  const setLoginPage = (userInfo) => {
-    setIsLoggedIn(true);
-    setLoggedInUser(userInfo);
-  };
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
   return (
     <div>
       <BrowserRouter>
@@ -54,7 +29,6 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+>>>>>>> origin/main
   );
 }
-
-export default App;
