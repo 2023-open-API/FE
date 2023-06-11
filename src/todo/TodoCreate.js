@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useTodoDispatch, useTodoNextId } from './TodoContext';
 
 const ToggleButton = styled.div`
   color: #ffffff;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 9px;
   width: 40px;
   height: 40px;
   font-size: 30px;
@@ -23,6 +23,7 @@ const InsertFormPositioner = styled.div`
   border-radius: 19px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ced4da;
 
   
   .btnbundle{
@@ -91,6 +92,7 @@ function TodoCreate() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const [detail, setDetail] = useState('');
+  const modalRef = useRef(null);
 
   const dispatch = useTodoDispatch();
   const nextId = useTodoNextId();
@@ -121,7 +123,7 @@ function TodoCreate() {
         id: nextId.current,
         text: value,
         detail: detail,
-        done: false,
+        done: false
       }
     });
     setValue('');
@@ -130,12 +132,25 @@ function TodoCreate() {
     nextId.current += 1;
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <ToggleButton onClick={openModal} open={open}>+</ToggleButton>
 
       {open && (
-        <InsertFormPositioner>
+        <InsertFormPositioner ref={modalRef}>
             <p className='todotitle'>to do</p>
             <Input1 type="text" placeholder='to do를 입력하세요' value={value} onChange={handleInputChange} />
             <Input2 value={detail} onChange={handleDetailChange} />

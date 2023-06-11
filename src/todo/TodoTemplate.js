@@ -5,12 +5,13 @@ import TodoCreate from "./TodoCreate";
 import { TodoProvider } from "./TodoContext";
 
 const TodoTemplateBlock = styled.div`
-  width: 460px;
-  height: 300px;
+  width: 320px;
+  height: 230px;
 
   margin: 32px 40px 0px 40px;
   display: flex;
   flex-direction: column;
+  font-family: 'Jamsil', sans-serif;
 `;
 
 const TodoHeadBlock = styled.div`

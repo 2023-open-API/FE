@@ -39,9 +39,14 @@ const TodoNextIdContext = createContext();
 
 export function TodoProvider({ children }) {
   const [state, dispatch] = useReducer(todoReducer, initialTodos);
-  const nextId = useRef(
-    Math.max(...state.map((todo) => todo.id)) + 1
-  );
+  const nextId = useRef(1);
+
+  useEffect(() => {
+    if (state.length > 0) {
+      nextId.current = Math.max(...state.map((todo) => todo.id)) + 1;
+    }
+  }, [state]);
+  
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(state));

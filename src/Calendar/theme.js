@@ -5,10 +5,10 @@ export const theme = {
       holiday: { color: '#f54f3d' },
       saturday: { color: '#135de6' },
       dayName: { color: '#333' },
-      today: { color: '#fff' },
+      today: { color: 'white' },
       gridSelection: {
         backgroundColor: 'rgba(19, 93, 230, 0.1)',
-        border: '1px solid #135de6',
+        border: '1px solid #a7c1e1',
       },
     },
 

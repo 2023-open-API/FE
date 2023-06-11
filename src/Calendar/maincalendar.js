@@ -12,45 +12,45 @@ import 'tui-time-picker/dist/tui-time-picker.css';
 
 export default function MainCalendar({ view }) {
   const calendarRef = useRef(null);
-  const [selectedDateRangeText, setSelectedDateRangeText] = useState('');
+  const [selectedDateRangeText, setSelectedDateRangeText] = useState('Calendar');
   const [selectedView, setSelectedView] = useState(view);
   
   //색 설정
   const initialcolor = [
     {
       id: '0',
-      name: 'Red',
-      backgroundColor: '#F4511E',
-      borderColor: '##F4511E',
-      dragBackgroundColor: '##F4511E',
+      name: 'Color1',
+      backgroundColor: '#E8F0FA',
+      borderColor: '#E8F0FA',
+      dragBackgroundColor: '#E8F0FA',
     },
     {
       id: '1',
-      name: 'Yellow',
-      backgroundColor: '#FEF17D',
-      borderColor: '#FEF17D',
-      dragBackgroundColor: '#FEF17D',
+      name: 'Color2',
+      backgroundColor: '#CEE0F4',
+      borderColor: '#CEE0F4',
+      dragBackgroundColor: '#CEE0F4',
     },
     {
       id: '2',
-      name: 'Green',
-      backgroundColor: '#5DAE60',
-      borderColor: '#5DAE60',
-      dragBackgroundColor: '#5DAE60',
+      name: 'Color3',
+      backgroundColor: '#A7C1E1',
+      borderColor: '#A7C1E1',
+      dragBackgroundColor: '#A7C1E1',
     },
     {
       id: '3',
-      name: 'Blue',
-      backgroundColor: '#6EB1E7',
-      borderColor: '#6EB1E7',
-      dragBackgroundColor: '#6EB1E7',
+      name: 'Color4',
+      backgroundColor: '#84A1C4',
+      borderColor: '#84A1C4',
+      dragBackgroundColor: '#84A1C4',
     },
     {
       id: '4',
-      name: 'Purple',
-      backgroundColor: '#9475CC',
-      borderColor: '#9475CC',
-      dragBackgroundColor: '#9475CC',
+      name: 'Color5',
+      backgroundColor: '#6682A7',
+      borderColor: '#6682A7',
+      dragBackgroundColor: '#6682A7',
     },
   ];
 
@@ -158,7 +158,7 @@ export default function MainCalendar({ view }) {
     //상단바
     <div>
 
-      <div>
+      <div className='buttonContainer'>
         <span className="buttonbunble">
           <button type="button" className="btn" data-action="move-today" onClick={onClickNavi}>
             Today
@@ -167,7 +167,7 @@ export default function MainCalendar({ view }) {
           &lt; 
           </button>
           <button type="button" className="btn" data-action="move-next" onClick={onClickNavi}>
-          &gt; 
+           &gt; 
           </button>
         </span>
 
@@ -175,7 +175,7 @@ export default function MainCalendar({ view }) {
       </div>
 
       <Calendar
-        height="550px"
+        height="650px"
         calendars={initialcolor}
         month={{ startDayOfWeek: 1, isAlways6Weeks: false }}
         theme={theme} //테마옵션

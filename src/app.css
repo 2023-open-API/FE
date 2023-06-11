@@ -8,28 +8,54 @@ body {
   text-align: center;
 }
 
+.buttonContainer{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  background-color: #a7c1e1;
+}
+
 
   /**  custom bootstrap - start */
   .btn {
-    border-radius: 25px;
-    border-color: #ddd;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #a7c1e1;
+    border: none;
+    margin-right: 2px;
+    font-family: 'Jamsil', sans-serif;
+    color: white;
   }
-  
+
+  .btn:first-child{
+    margin-left: 5px;
+  }
+
+  .btn:nth-child(2){
+    padding-right: 8px;
+  }
+
+  .btn:nth-child(3){
+    padding-left: 8px;
+  }
+
   .btn:hover {
-    border: solid 1px #bbb;
-    background-color: #fff;
+    border: none;
+    background-color: white;
+    color: #a7c1e1;
   }
   
   .btn:active {
-    background-color: #f9f9f9;
-    border: solid 1px #bbb;
+    background-color: white;
+    border: none;
     outline: none;
+    color: #a7c1e1;
   }
   
   .btn:disabled {
-    background-color: #f9f9f9;
-    border: solid 1px #ddd;
-    color: #bbb;
+    background-color: white;
+    border: none;
+    color: white;
   }
   
   .btn:focus:active,
@@ -39,7 +65,7 @@ body {
   }
   
   .move-today {
-    padding: 0 16px;
+    padding: 16px;
     line-height: 30px;
   }
   
@@ -48,10 +74,10 @@ body {
   }
   
   .render-range {
-    padding-left: 12px;
+    padding-left: 250px;
     font-size: 19px;
-
-    vertical-align: middle;
+    color: white;
+    font-family: 'Jamsil', sans-serif;
   }
   
   /** custom fontawesome */
