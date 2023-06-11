@@ -1,10 +1,34 @@
-/* eslint-disable no-console */
-import './app.css';
-import MainCalendar from './Calendar/maincalendar';
+import logo from './logo.svg';
+import './App.css';
 
-
-export default function App() {
+function App() {
   return (
-    <MainCalendar view="month"/>
+    <div>
+      <BrowserRouter>
+        {isLoggedIn && (
+          <div>
+            <NavMenu signeduser={signeduser} />
+          </div>
+        )}
+        <Routes>
+          {!isLoggedIn && (
+            <Route path="/" element={<Login setLoginPage={setLoginPage} />} />
+          )}
+          {!isLoggedIn && (
+            <Route
+              path="/signup"
+              element={<Signup setSignedUser={setSignedUser} />}
+            />
+          )}
+          {isLoggedIn && (
+            <>
+              <Route path="/" element={<Home />} />
+              <Route path="/timetable" element={<TimeTableApp />} />
+            </>
+          )}
+        </Routes>
+      </BrowserRouter>
+    </div>
+>>>>>>> origin/main
   );
 }

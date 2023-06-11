@@ -36,28 +36,3 @@ export const authUser = async (userInfo) => {
     throw error;
   }
 };
-
-
-state = {}
-  
-componentDidMount() {
-  this._getEvents();
-}
-
-_getEvents = async () => {
-  const events = await this._axiosEvents();
-  this.setState({
-    events
-  })
-} 
-
-_axiosEvents = () => {
-  return axios.get('/test')
-    .then(res => res.data)
-}
-
-useEffect(() => {
-  axios.get('dummy/calendar_list.json')
-  .then(res=>setEvents(res.data.calendarList))
- .catch(err=>console.log(err));
- }, []);
