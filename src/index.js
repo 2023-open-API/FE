@@ -2,12 +2,11 @@ import '@toast-ui/calendar/toastui-calendar.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { App } from './app';
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App view="month"/>
+    <App/>
   </React.StrictMode>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
