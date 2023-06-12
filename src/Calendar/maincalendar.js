@@ -182,6 +182,18 @@ export default function MainCalendar({ view }) {
           titlePlaceholder() {
             return 'Title' ;
           },
+          popupSave() {
+            return '저장' ;
+          },
+          popupEdit() {
+            return '수정' ;
+          },
+          popupDelete() {
+            return '삭제' ;
+          },
+          popupUpdate() {
+            return '완료' ;
+          },
         }}
         useDetailPopup={true}
         useFormPopup={true}
