@@ -175,6 +175,7 @@ export default function MainCalendar({ view }) {
 
       <Calendar
         height="730px"
+        calendars={initialcolor}
         month={{ startDayOfWeek: 1, isAlways6Weeks: false }}
         theme={theme} //테마옵션
         useDetailPopup={true}
@@ -188,3 +189,5 @@ export default function MainCalendar({ view }) {
     </div>
   );
 }
+
+document.querySelector("#root > div > div.makeStyles-container-62 > div.makeStyles-calendarContainer-65 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-state-section > button")

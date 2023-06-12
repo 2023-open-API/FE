@@ -88,3 +88,86 @@ body {
     height: 12px;
     margin-right: 2px;
   }
+
+
+  .toastui-calendar-ic-state{
+    visibility:hidden;
+  }
+
+  .toastui-calendar-form-container > div:nth-child(2) > button > span{
+    visibility:hidden;
+  }
+
+  .toastui-calendar-popup-button.toastui-calendar-popup-section-private{
+    width: 0;
+    height: 0;
+    border:none;
+    cursor:default;
+  }
+
+  .toastui-calendar-icon.toastui-calendar-ic-dropdown-arrow {
+    width: 0;
+    height: 0;
+    cursor:default;
+  }
+
+  .toastui-calendar-dropdown-section.toastui-calendar-state-section .toastui-calendar-popup-button{
+    visibility:hidden;
+    cursor:default;
+  }
+  
+  .toastui-calendar-event-state{
+    visibility:hidden;
+  }
+
+  .toastui-calendar-popup-button.toastui-calendar-popup-confirm{
+    background: #84A1C4;
+  }
+
+  .toastui-calendar-icon.toastui-calendar-ic-user-b{
+    visibility:hidden;
+  }
+  
+  .toastui-calendar-detail-item-indent{
+    padding-left: 0;
+  }
+
+  .toastui-calendar-icon.toastui-calendar-ic-state-b{
+    visibility:hidden;
+  }
+  
+  .toastui-calendar-calendar-dot{
+    visibility:hidden;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail > div:nth-child(3){
+    visibility:hidden;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail > div:nth-child(2){
+    visibility:hidden;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail{
+    margin-bottom: 0;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container{
+    padding: 27px 17px 0;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail{
+    height: 50px;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-state-section{
+    display: none;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div:nth-child(7){
+    margin-top: 10px;
+  }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container{
+    padding-top: 25px;
+  }
