@@ -102,7 +102,7 @@ function TodoTemplate() {
           </div>
           <TodoCreate Date={formattedDate} />
         </TodoHeadBlock>
-        <TodoList />
+        <TodoList titleDate={formattedDate} />
       </TodoTemplateBlock>
     </TodoProvider>
   );

@@ -133,7 +133,7 @@ const Input2 = styled.textarea`
   box-sizing: border-box;
 `;
 
-function TodoItem({ date, id, done, text, detail }) {
+function TodoItem({ id, done, text, detail }) {
   const [isEditing, setEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedDetail, setEditedDetail] = useState(detail);

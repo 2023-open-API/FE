@@ -10,20 +10,25 @@ const TodoListBlock = styled.div`
   background-color: white;
 `;
 
-function TodoList() {
+function TodoList({titleDate}) {
   const todos = useTodoState();
 
   return (
     <TodoListBlock>
-      {todos.map((todo) => (
-        <TodoItem
-          date={todo.date}
-          id={todo.id}
-          text={todo.text}
-          detail={todo.detail}
-          done={todo.done}
-        />
-      ))}
+     {todos.map((todo) => {
+        if (todo.date === titleDate) {
+          return (
+            <TodoItem
+              key={todo.id}
+              id={todo.id}
+              text={todo.text}
+              detail={todo.detail}
+              done={todo.done}
+            />
+          );
+        }
+        return null;
+      })}
     </TodoListBlock>
   );
 }
