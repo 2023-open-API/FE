@@ -8,8 +8,14 @@ const useStyles = makeStyles({
   container: {
     display: "flex",
   },
+  todoAndTable: {
+    marginRight: "40px",
+  },
+  todo: {
+    width: "50vh",
+  },
   tableContainer: {
-    width: "360px",
+    width: "53vh",
     height: "480px",
     overflowY: "auto",
     overflowX: "hidden",
@@ -17,10 +23,11 @@ const useStyles = makeStyles({
   },
   table: {
     margin: "0",
+    width: "54vh",
   },
   calendarContainer: {
     marginTop: "32px",
-    width: "780px",
+    width: "100vh",
     height: "560px",
     marginBottom: "32px",
   },
@@ -31,8 +38,8 @@ function Home() {
 
   return (
     <div className={classes.container}>
-      <div>
-        <div>
+      <div className={classes.todoAndTable}>
+        <div className={classes.todo}>
           <TodoTemplate />
         </div>
         <div className={classes.tableContainer}>
@@ -41,7 +48,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div>
+      <div className={classes.calendarContainer}>
         <MainCalendar view="month" />
       </div>
     </div>
