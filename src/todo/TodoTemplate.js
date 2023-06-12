@@ -17,18 +17,19 @@ const TodoTemplateBlock = styled.div`
 const TodoHeadBlock = styled.div`
   background-color: #a7c1e1;
   display: flex;
+  height:40px;
   flex-direction: row;
   justify-content: space-between;
 
   .title {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: end;
   }
 
   .todo {
     font-size: 22px;
-    margin: 12px 10px;
+    margin: 12px 10px 6px;
     color: #ffffff;
     font-weight: bold;
   }
@@ -41,7 +42,7 @@ const DateInput = styled.input`
   font-family: 'Jamsil', sans-serif;
   font-size: 12px;
   outline: none;
-  margin: 14px 5px;
+  margin: 14px 5px 9.5px;
 
   &:hover {
     border: none;
