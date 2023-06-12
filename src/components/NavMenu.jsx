@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontFamily: "Jamsil",
     fontWeight: 800,
-    fontSize: "24px",
+    fontSize: "19px",
   },
   navMenu: {
     textAlign: "right",
@@ -28,8 +28,7 @@ const useStyles = makeStyles(() => ({
     marginRight: "20px",
     color: "white",
     textDecoration: "none",
-    fontWeight: "bold",
-    fontSize: "16px",
+    fontSize: "15px",
     fontFamily: "Jamsil",
     fontWeight: 400,
   },

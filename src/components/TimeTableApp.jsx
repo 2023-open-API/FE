@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
   },
   classlist: {
     position: "relative",
-    height: "760px",
+    height: "85vh",
     marginBottom: "30px",
     backgroundColor: "white",
     marginLeft: 0,

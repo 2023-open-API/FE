@@ -32,11 +32,13 @@ function Home() {
   return (
     <div className={classes.container}>
       <div>
-        <TodoTemplate />
-      </div>
-      <div className={classes.tableContainer}>
-        <div className={classes.table}>
-          <TimeTableApp />
+        <div>
+          <TodoTemplate />
+        </div>
+        <div className={classes.tableContainer}>
+          <div className={classes.table}>
+            <TimeTableApp />
+          </div>
         </div>
       </div>
       <div>
