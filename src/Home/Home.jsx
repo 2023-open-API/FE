@@ -2,7 +2,7 @@ import React from "react";
 import TimeTableApp from "../components/TimeTableApp";
 import { makeStyles } from "@mui/styles";
 import TodoTemplate from "../todo/TodoTemplate";
-import MainCalendar from "../Calendar/maincalendar"
+import MainCalendar from "../Calendar/maincalendar";
 
 const useStyles = makeStyles({
   container: {},
@@ -30,7 +30,7 @@ function Home() {
         </div>
       </div>
       <div>
-        <MainCalendar view="month"/>
+        <MainCalendar view="month" />
       </div>
     </div>
   );

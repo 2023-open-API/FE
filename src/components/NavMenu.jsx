@@ -15,6 +15,7 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontFamily: "Jamsil",
     fontWeight: 800,
+    fontSize: "24px",
   },
   navMenu: {
     textAlign: "right",
@@ -51,7 +52,6 @@ function NavMenu({ signeduser }) {
           </span>
         </div>
       </nav>
-      {console.log(signeduser)}
     </div>
   );
 }

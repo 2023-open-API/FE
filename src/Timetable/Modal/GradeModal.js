@@ -100,7 +100,6 @@ function GradeModal({
           </div>
         </Fade>
       </Modal>
-      {console.log(selectedGrade)}
     </ThemeProvider>
   );
 }
