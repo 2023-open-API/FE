@@ -88,7 +88,7 @@ const Input2 = styled.textarea`
   box-sizing: border-box;
 `;
 
-function TodoCreate() {
+function TodoCreate({Date}) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const [detail, setDetail] = useState('');
@@ -123,7 +123,8 @@ function TodoCreate() {
         id: nextId.current,
         text: value,
         detail: detail,
-        done: false
+        done: false,
+        date: Date,
       }
     });
     setValue('');

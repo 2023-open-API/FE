@@ -90,6 +90,8 @@ function TodoTemplate() {
     setPickedDate(event.target.value);
   };
 
+  const formattedDate = pickedDate.toString();
+
   return (
     <TodoProvider>
       <TodoTemplateBlock>
@@ -98,7 +100,7 @@ function TodoTemplate() {
             <p className="todo">to-do</p>
             <DateInput type="date" value={pickedDate} onChange={handleDate} />
           </div>
-          <TodoCreate />
+          <TodoCreate Date={formattedDate} />
         </TodoHeadBlock>
         <TodoList />
       </TodoTemplateBlock>
