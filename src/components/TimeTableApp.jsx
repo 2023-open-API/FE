@@ -8,10 +8,8 @@ import { useLocation } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
-    width: "100%",
-    marginTop: "30px",
-    marginBottom: "30px",
     marginLeft: "40px",
+    marginTop: "30px",
   },
   timetable: {
     position: "sticky",
@@ -21,9 +19,10 @@ const useStyles = makeStyles(() => ({
   },
   classlist: {
     position: "relative",
-    height: "760px",
+    height: "85vh",
     marginBottom: "30px",
     backgroundColor: "white",
+    marginLeft: 0,
   },
   timetableTitle: {
     backgroundColor: "#A7C1E1",

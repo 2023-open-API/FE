@@ -6,8 +6,7 @@ import Login from "./Login/Login";
 import TimeTableApp from "./components/TimeTableApp";
 import Signup from "./Login/Signup";
 import "./fonts/fonts.css";
-import "./app.css"
-
+import "./app.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
