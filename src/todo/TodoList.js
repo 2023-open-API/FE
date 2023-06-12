@@ -17,7 +17,7 @@ function TodoList() {
     <TodoListBlock>
       {todos.map((todo) => (
         <TodoItem
-          key={todo.id}
+          date={todo.date}
           id={todo.id}
           text={todo.text}
           detail={todo.detail}

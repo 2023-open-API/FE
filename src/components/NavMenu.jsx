@@ -12,6 +12,7 @@ const useStyles = makeStyles(() => ({
   navTitle: {
     float: "left",
     marginLeft: "40px",
+    marginTop: "25px",
     color: "white",
     fontFamily: "Jamsil",
     fontWeight: 800,

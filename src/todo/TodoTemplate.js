@@ -1,16 +1,18 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import TodoList from "./TodoList";
 import TodoCreate from "./TodoCreate";
 import { TodoProvider } from "./TodoContext";
+import "react-datepicker/dist/react-datepicker.css";
 
 const TodoTemplateBlock = styled.div`
-  width: 460px;
-  height: 300px;
+  width: 320px;
+  height: 230px;
 
   margin: 32px 40px 0px 40px;
   display: flex;
   flex-direction: column;
+  font-family: 'Jamsil', sans-serif;
 `;
 
 const TodoHeadBlock = styled.div`
@@ -31,23 +33,62 @@ const TodoHeadBlock = styled.div`
     color: #ffffff;
     font-weight: bold;
   }
+`;
 
-  .date {
-    color: #ffffff;
-    font-size: 12px;
-    margin: 16px 5px;
+const DateInput = styled.input`
+  background-color: #a7c1e1;
+  border:none;
+  color: white;
+  font-family: 'Jamsil', sans-serif;
+  font-size: 12px;
+  outline: none;
+  margin: 14px 5px;
+
+  &:hover {
+    border: none;
+    background-color: #a7c1e1;
+    outline: none;
+    color: white;
+  }
+
+  &:active {
+    background-color: #a7c1e1;
+    border: none;
+    outline: none;
+    color: white;
+  }
+
+  &:after{
+    background-color: #a7c1e1;
+    border: none;
+    outline: none;
+    color: white;
+  }
+
+  &:before{
+    background-color: #a7c1e1;
+    border: none;
+    outline: none;
+    color: white;
+  }
+
+  ::-webkit-calendar-picker-indicator{
+    filter: invert(1);
+    cursor: pointer;
   }
 `;
 
 function TodoTemplate() {
   const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  const initialDate = `${year}-${month}-${day}`;
+  const [pickedDate, setPickedDate] = useState(initialDate);
 
-  const dateString = today.toLocaleDateString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "short",
-  });
+  const handleDate = (event) => {
+    setPickedDate(event.target.value);
+  };
 
   return (
     <TodoProvider>
@@ -55,7 +96,7 @@ function TodoTemplate() {
         <TodoHeadBlock>
           <div className="title">
             <p className="todo">to-do</p>
-            <p className="date">{dateString}</p>
+            <DateInput type="date" value={pickedDate} onChange={handleDate} />
           </div>
           <TodoCreate />
         </TodoHeadBlock>

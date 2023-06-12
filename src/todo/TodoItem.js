@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled, { css } from "styled-components";
 import { MdDone } from "react-icons/md";
 import { useTodoDispatch } from "./TodoContext";
@@ -29,8 +29,8 @@ const TodoItemBlock = styled.div`
 `;
 
 const CheckCircle = styled.div`
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border: 1px solid black;
   font-size: 24px;
   display: flex;
@@ -70,6 +70,7 @@ const InsertFormPositioner = styled.div`
   border-radius: 19px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ced4da;
 
   .btnbundle {
     display: flex;
@@ -132,7 +133,7 @@ const Input2 = styled.textarea`
   box-sizing: border-box;
 `;
 
-function TodoItem({ id, done, text, detail }) {
+function TodoItem({ date, id, done, text, detail }) {
   const [isEditing, setEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [editedDetail, setEditedDetail] = useState(detail);
@@ -176,6 +177,21 @@ function TodoItem({ id, done, text, detail }) {
     setEditing(false);
   };
 
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setEditing(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={onToggle}>
@@ -188,7 +204,7 @@ function TodoItem({ id, done, text, detail }) {
 
       {/* 수정 폼 */}
       {isEditing && (
-        <InsertFormPositioner>
+        <InsertFormPositioner ref={modalRef}>
           <Input1
             type="text"
             value={editedText}
@@ -209,3 +225,4 @@ function TodoItem({ id, done, text, detail }) {
 }
 
 export default React.memo(TodoItem);
+
