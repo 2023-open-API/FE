@@ -6,7 +6,7 @@ const useStyles = makeStyles(() => ({
   container: {
     backgroundColor: "#84A1C4",
     height: "70px",
-    width: "100%",
+    width: "100vw",
     zIndex: 1,
   },
   navTitle: {
