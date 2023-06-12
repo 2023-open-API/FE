@@ -159,6 +159,7 @@ export default function MainCalendar({ view }) {
     <div>
 
       <div className='buttonContainer'>
+        <span className="render-range">{selectedDateRangeText}</span>
         <span className="buttonbunble">
           <button type="button" className="btn" data-action="move-today" onClick={onClickNavi}>
             Today
@@ -170,13 +171,10 @@ export default function MainCalendar({ view }) {
            &gt; 
           </button>
         </span>
-
-        <span className="render-range">{selectedDateRangeText}</span>
       </div>
 
       <Calendar
-        height="650px"
-        calendars={initialcolor}
+        height="730px"
         month={{ startDayOfWeek: 1, isAlways6Weeks: false }}
         theme={theme} //테마옵션
         useDetailPopup={true}

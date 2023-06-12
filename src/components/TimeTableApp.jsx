@@ -8,13 +8,9 @@ import { useLocation } from "react-router-dom";
 const useStyles = makeStyles(() => ({
   container: {
     display: "flex",
-    marginLeft: "40px",
-    marginTop: "30px",
   },
   timetable: {
     position: "sticky",
-    width: "600px",
-    marginRight: "30px",
     marginLeft: 0,
   },
   classlist: {

@@ -7,29 +7,27 @@ import MainCalendar from "../Calendar/maincalendar";
 const useStyles = makeStyles({
   container: {
     display: "flex",
+    width: "100vw",
   },
-  todoAndTable: {
-    marginRight: "40px",
-  },
-  todo: {
-    width: "50vh",
-  },
+
+  todoAndTable: {},
+
   tableContainer: {
-    width: "53vh",
-    height: "480px",
+    width: "30vw",
+    marginLeft: "3vw",
+    marginRight: "3vw",
+    height: "500px",
     overflowY: "auto",
     overflowX: "hidden",
-    marginTop: "10px",
+    marginBottom: "3vh",
+    marginTop: "20px",
   },
-  table: {
-    margin: "0",
-    width: "54vh",
-  },
+
   calendarContainer: {
-    marginTop: "32px",
-    width: "100vh",
-    height: "560px",
-    marginBottom: "32px",
+    marginTop: "3vh",
+    width: "61vw",
+    marginBottom: "3vh",
+    marginRight: "3vw",
   },
 });
 
@@ -39,13 +37,11 @@ function Home() {
   return (
     <div className={classes.container}>
       <div className={classes.todoAndTable}>
-        <div className={classes.todo}>
+        <div className={classes.todoContainer}>
           <TodoTemplate />
         </div>
         <div className={classes.tableContainer}>
-          <div className={classes.table}>
-            <TimeTableApp />
-          </div>
+          <TimeTableApp />
         </div>
       </div>
       <div className={classes.calendarContainer}>

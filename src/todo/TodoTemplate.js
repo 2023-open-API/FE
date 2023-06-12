@@ -6,10 +6,9 @@ import { TodoProvider } from "./TodoContext";
 import "react-datepicker/dist/react-datepicker.css";
 
 const TodoTemplateBlock = styled.div`
-  width: 320px;
-  height: 230px;
-
-  margin: 32px 40px 0px 40px;
+  height: 250px;
+  width: 30vw;
+  margin: 3vh 3vw 0px 3vw;
   display: flex;
   flex-direction: column;
   font-family: 'Jamsil', sans-serif;

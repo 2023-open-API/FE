@@ -11,6 +11,7 @@ body {
 .buttonContainer{
   display: flex;
   align-items: center;
+  justify-content : space-between;  
   height: 40px;
   background-color: #a7c1e1;
 }
@@ -37,6 +38,7 @@ body {
 
   .btn:nth-child(3){
     padding-left: 8px;
+    margin-right: 5px;
   }
 
   .btn:hover {
@@ -74,10 +76,10 @@ body {
   }
   
   .render-range {
-    padding-left: 250px;
     font-size: 19px;
     color: white;
     font-family: 'Jamsil', sans-serif;
+    margin-left: 15px;
   }
   
   /** custom fontawesome */
