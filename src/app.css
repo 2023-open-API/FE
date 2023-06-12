@@ -171,3 +171,7 @@ body {
   #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container{
     padding-top: 25px;
   }
+
+  #root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-calendar-section > ul{
+    width: 161.5px;
+  }

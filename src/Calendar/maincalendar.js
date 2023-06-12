@@ -178,6 +178,11 @@ export default function MainCalendar({ view }) {
         calendars={initialcolor}
         month={{ startDayOfWeek: 1, isAlways6Weeks: false }}
         theme={theme} //테마옵션
+        template={{
+          titlePlaceholder() {
+            return 'Title' ;
+          },
+        }}
         useDetailPopup={true}
         useFormPopup={true}
         view={selectedView}
@@ -189,5 +194,3 @@ export default function MainCalendar({ view }) {
     </div>
   );
 }
-
-document.querySelector("#root > div > div.makeStyles-container-62 > div.makeStyles-calendarContainer-65 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-state-section > button")
