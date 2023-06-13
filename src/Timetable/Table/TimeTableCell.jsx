@@ -113,13 +113,16 @@ function TimeTableCell({
                 .map((cell) => {
                   const [lectureStartHour] = cell.split("-");
                   const startTime = Number(lectureStartHour) + 9;
+                  const courseTime = lecture.courseTimeResponses.find(
+                    (courseTime) =>
+                      courseTime.startTime.includes(`${startTime}:`)
+                  );
+                  {
+                    console.log(courseTime);
+                  }
                   return (
                     <p key={cell} style={{ fontSize: "60%", lineHeight: 0 }}>
-                      {
-                        lecture.courseTimeResponses.find((courseTime) =>
-                          courseTime.startTime.includes(`${startTime}:`)
-                        ).startTime
-                      }
+                      {courseTime.startTime} {courseTime.location}
                     </p>
                   );
                 })}

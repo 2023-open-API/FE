@@ -184,7 +184,7 @@ function ClassList({ addLecture, setLoading }) {
                   .filter(
                     (lecture) =>
                       (selectedMajor === null ||
-                        lecture.major === selectedMajor) &&
+                        lecture.department === selectedMajor) &&
                       (selectedGrade === null ||
                         Number(lecture.grade) === selectedGrade)
                   )
@@ -248,7 +248,7 @@ function ClassList({ addLecture, setLoading }) {
           />
         </ThemeProvider>
       </div>
-      {console.log(lectureData)}
+      {console.log(selectedMajor)}
     </div>
   );
 }

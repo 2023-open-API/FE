@@ -10,8 +10,6 @@ const useStyles = makeStyles({
     width: "100vw",
   },
 
-  todoAndTable: {},
-
   tableContainer: {
     width: "30vw",
     marginLeft: "3vw",
@@ -36,7 +34,7 @@ function Home() {
 
   return (
     <div className={classes.container}>
-      <div className={classes.todoAndTable}>
+      <div>
         <div className={classes.todoContainer}>
           <TodoTemplate />
         </div>
