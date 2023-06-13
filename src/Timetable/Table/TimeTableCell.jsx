@@ -117,9 +117,7 @@ function TimeTableCell({
                     (courseTime) =>
                       courseTime.startTime.includes(`${startTime}:`)
                   );
-                  {
-                    console.log(courseTime);
-                  }
+
                   return (
                     <p key={cell} style={{ fontSize: "60%", lineHeight: 0 }}>
                       {courseTime.startTime} {courseTime.location}
