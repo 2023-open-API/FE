@@ -124,19 +124,16 @@ export default function MainCalendar({ view }) {
 
   //일정 추가
   const onBeforeCreateEvent = useCallback((eventData) => {
+    console.log(eventData);
     const event = {
-      calendarId: eventData.calendarId || '',
+      calendarId: eventData.calendarId || '2', //초기 색 설정임
       id: String(Math.random()),
       title: eventData.title,
-      attendees: ["교수 이름"],
-      isAllDay: eventData.isAllDay,
       start: String(eventData.start),
       end: String(eventData.end),
-      category: eventData.isAllDay ? 'allday' : 'time',
     };
 
     getCalInstance().createEvents([event]);
-    console.log("dkdkd");
 
     // Save event to localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];

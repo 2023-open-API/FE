@@ -90,34 +90,61 @@ background-color: #a7c1e1;
 }
 
 
-.toastui-calendar-ic-state{
-  visibility:hidden;
+/*캘린더*/
+.toastui-calendar-calendar-section > ul{
+  width: 175.5px;
 }
+/* 추가 모달 창 색깔 선택 버튼*/
 
-.toastui-calendar-form-container > div:nth-child(2) > button > span{
+.toastui-calendar-popup-section-private{
   visibility:hidden;
-}
+  border:none;
+  cursor:default;
+} /* 추가 모달 창 잠금 버튼*/
 
-.toastui-calendar-popup-button.toastui-calendar-popup-section-private{
+.toastui-calendar-popup-section-item.toastui-calendar-popup-section-location{
+  visibility:hidden;
   width: 0;
   height: 0;
   border:none;
   cursor:default;
-}
+} /* 추가 모달 창 장소 버튼*/
 
-.toastui-calendar-icon.toastui-calendar-ic-dropdown-arrow {
+.toastui-calendar-ic-location{
+  display: none;
   width: 0;
   height: 0;
-  cursor:default;
 }
+ .toastui-calendar-form-container > div:nth-child(3) > div > input{
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+ }
 
-.toastui-calendar-dropdown-section.toastui-calendar-state-section .toastui-calendar-popup-button{
-  visibility:hidden;
+ .toastui-calendar-form-container > div:nth-child(3) > div{
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+ }
+
+ .toastui-calendar-form-container > div:nth-child(3){
+  display: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+ }
+
+/* 추가 모달 창 장소 아이콘*/
+
+.toastui-calendar-state-section{
+  display: none;
   cursor:default;
-}
+} /* 추가 모달 창 바쁨 버튼*/
 
-.toastui-calendar-event-state{
-  visibility:hidden;
+.toastui-calendar-popup-section{
+  margin-top: 20px;
 }
 
 .toastui-calendar-popup-button.toastui-calendar-popup-confirm{
@@ -131,95 +158,57 @@ background-color: #a7c1e1;
   text-align: center;
   font-size: 13px;
   color: white;
-}
-
-.toastui-calendar-icon.toastui-calendar-ic-user-b{
-  visibility:hidden;
-}
-
-.toastui-calendar-detail-item-indent{
-  padding-left: 0;
-}
-
-.toastui-calendar-icon.toastui-calendar-ic-state-b{
-  visibility:hidden;
-}
-
-.toastui-calendar-calendar-dot{
-  visibility:hidden;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail > div:nth-child(3){
-  visibility:hidden;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail > div:nth-child(2){
-  visibility:hidden;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail{
-  margin-bottom: 0;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container{
-  padding: 27px 17px 0;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-detail{
-  height: 50px;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-state-section{
-  display: none;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div:nth-child(7){
-  margin-top: 10px;
   margin-right: 10px;
-}
-
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container{
-  padding-top: 35px;
-  height: 250px;
-  z-index: 999;
-  position: absolute;
+  margin-top: 10px;
   font-family: 'Jamsil', sans-serif;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 15px;
-  border: 1px solid #ced4da;
-}
+}  /* 추가 모달 창 저장 버튼*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-form-popup-slot > div > form > div.toastui-calendar-form-container > div.toastui-calendar-popup-section.toastui-calendar-dropdown-section.toastui-calendar-calendar-section > ul{
-  width: 161.5px;
+.toastui-calendar-popup-section-allday{
+  visibility:hidden;
+  cursor:default;
 }
+/* 추가 창 올데이 버튼*/
 
 .toastui-calendar-grid-cell-date .toastui-calendar-weekday-grid-date.toastui-calendar-weekday-grid-date-decorator{
   background-color: #6682A7;
 }
+/* 현재 날짜 동그라미*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button > button.toastui-calendar-edit-button > span.toastui-calendar-icon.toastui-calendar-ic-edit{
+.toastui-calendar-ic-edit{
   display: none;
 }
+/* 상세 창 수정 아이콘*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button > button.toastui-calendar-delete-button > span.toastui-calendar-icon.toastui-calendar-ic-delete{
+
+.toastui-calendar-ic-delete{
   display: none;
 }
+/* 상세 창 삭제 아이콘*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button{
+
+.toastui-calendar-section-detail{
+  display: none !important;
+}
+/* 상세 창 내용 칸*/
+
+
+.toastui-calendar-popup-section.toastui-calendar-section-button{
   border: none;
   text-align: right;
   display:flex;
   justify-content: end;
+  margin-top: 50px;
 }
+/* 상세 창 삭제/수정 버튼*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button > div{
+
+.toastui-calendar-vertical-line{
   display: none;
 }
+/* 상세 창 삭제/수정 버튼 가운데 선*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button > button.toastui-calendar-edit-button{
+
+.toastui-calendar-delete-button{
   background: #84A1C4;
   border-radius: 7px;
   cursor: pointer;
@@ -228,15 +217,18 @@ background-color: #a7c1e1;
   padding: 2px 0;
   font-weight: 600;
   display: flex;
+  font-weight: 600;
   justify-content: center;
   align-items: center;
-  line-height: 23px;
   text-align: center;
   font-size: 13px;
+  font-family: 'Jamsil', sans-serif;
   color: white;
+  margin-left: 3px;
 }
+/* 상세 창 삭제 버튼 버튼*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container > div.toastui-calendar-popup-section.toastui-calendar-section-button > button.toastui-calendar-delete-button{
+.toastui-calendar-edit-button{
   background: #84A1C4;
   border-radius: 7px;
   cursor: pointer;
@@ -252,10 +244,21 @@ background-color: #a7c1e1;
   font-size: 13px;
   color: white;
   margin-left: 3px;
+  font-family: 'Jamsil', sans-serif;
 }
+/* 상세 창 수정 버튼*/
 
-#root > div > div.makeStyles-container-10 > div.makeStyles-calendarContainer-13 > div > div.container > div.toastui-calendar-floating-layer > div.toastui-calendar-event-detail-popup-slot > div > div.toastui-calendar-detail-container{
+
+.toastui-calendar-detail-container{
   font-family: 'Jamsil', sans-serif;
   margin-bottom: 3px;
 }
+/* 상세창 글씨*/
 
+.toastui-calendar-template-popupDetailTitle{
+  font-size: large;
+}
+
+.toastui-calendar-form-container{
+  width: 440px;
+}
