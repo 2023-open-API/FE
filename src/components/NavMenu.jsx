@@ -44,9 +44,10 @@ function NavMenu({ signeduser }) {
           <Link className={classes.navbtn} to={{ pathname: "/" }}>
             HOME
           </Link>
-          <Link className={classes.navbtn} to={{ pathname: "/timetable" }}>
+          <Link className={classes.navbtn} to="/timetable">
             시간표
           </Link>
+
           <span className={classes.navbtn}>
             {localStorage.getItem("userName")}님
           </span>

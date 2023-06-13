@@ -94,10 +94,16 @@ function TimeTableCell({
       onMouseLeave={handleMouseLeave}
     >
       {lecturesOfDay.map((lecture, index) => (
-        <span key={index}>
+        <span key={index} style={{ position: "absolute", top: 0 }}>
           {index === 0 && isFirstCell && (
             <>
-              <h4 style={{ fontWeight: 300, fontSize: "80%", margin: 0 }}>
+              <h4
+                style={{
+                  fontWeight: 300,
+                  fontSize: "80%",
+                  margin: 0,
+                }}
+              >
                 {lecture.name}
               </h4>
               {coloredCells
@@ -107,13 +113,14 @@ function TimeTableCell({
                 .map((cell) => {
                   const [lectureStartHour] = cell.split("-");
                   const startTime = Number(lectureStartHour) + 9;
+                  const courseTime = lecture.courseTimeResponses.find(
+                    (courseTime) =>
+                      courseTime.startTime.includes(`${startTime}:`)
+                  );
+
                   return (
                     <p key={cell} style={{ fontSize: "60%", lineHeight: 0 }}>
-                      {
-                        lecture.courseTimeResponses.find((courseTime) =>
-                          courseTime.startTime.includes(`${startTime}:`)
-                        ).startTime
-                      }
+                      {courseTime.startTime} {courseTime.location}
                     </p>
                   );
                 })}

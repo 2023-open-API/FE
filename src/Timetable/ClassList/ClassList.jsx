@@ -184,7 +184,7 @@ function ClassList({ addLecture, setLoading }) {
                   .filter(
                     (lecture) =>
                       (selectedMajor === null ||
-                        lecture.major === selectedMajor) &&
+                        lecture.department === selectedMajor) &&
                       (selectedGrade === null ||
                         Number(lecture.grade) === selectedGrade)
                   )
@@ -225,13 +225,13 @@ function ClassList({ addLecture, setLoading }) {
             </Table>
           </TableContainer>
 
-          {/* <MajorModal
+          <MajorModal
             isOpen={isMajorModalOpen}
             majorData={lectureData}
             selectedMajor={selectedMajor}
             handleCloseModal={handleCloseMajorModal}
             onSelect={handleSelectMajor}
-          /> */}
+          />
           <GradeModal
             isOpen={isGradeModalOpen}
             selectedGrade={selectedGrade}

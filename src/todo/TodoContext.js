@@ -52,6 +52,7 @@ export function TodoProvider({ children }) {
     localStorage.setItem('todos', JSON.stringify(state));
   }, [state]);
 
+  
   return (
     <TodoStateContext.Provider value={state}>
       <TodoDispatchContext.Provider value={dispatch}>

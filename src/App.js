@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import Home from "./Home/Home";
 import Login from "./Login/Login";
 import TimeTableApp from "./components/TimeTableApp";
 import Signup from "./Login/Signup";
-import "./fonts/fonts.css";
-import "./app.css";
+import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,11 +30,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {isLoggedIn && (
-          <div>
-            <NavMenu signeduser={signeduser} />
-          </div>
-        )}
+        {isLoggedIn && <NavMenu signeduser={signeduser} />}
         <Routes>
           {!isLoggedIn && (
             <Route path="/" element={<Login setLoginPage={setLoginPage} />} />
