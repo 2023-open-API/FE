@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Background = styled.div`
   position: absolute;
   width: 100vw;
-  height: 100vh;
+  height: 850px;
   top: 0;
   left: 0;
   background: #ffffffb7;
@@ -11,7 +11,7 @@ export const Background = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 `;
 
 export const LoadingText = styled.div`

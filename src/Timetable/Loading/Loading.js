@@ -5,7 +5,7 @@ import Spinner from "./Spinner.gif";
 export default () => {
   return (
     <Background>
-      <img src={Spinner} alt="로딩중" width="5%" />{" "}
+      <img className="loadingimg"src={Spinner} alt="로딩중" width="5%" />{" "}
       <LoadingText>
         강의 정보를 불러오는 중입니다. <br /> 잠시만 기다려주세요
       </LoadingText>
