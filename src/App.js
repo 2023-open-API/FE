@@ -1,11 +1,12 @@
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavMenu from "./components/NavMenu";
 import Home from "./Home/Home";
 import Login from "./Login/Login";
 import TimeTableApp from "./components/TimeTableApp";
 import Signup from "./Login/Signup";
-import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import "./fonts/fonts.css";
+import "./app.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
