@@ -94,10 +94,16 @@ function TimeTableCell({
       onMouseLeave={handleMouseLeave}
     >
       {lecturesOfDay.map((lecture, index) => (
-        <span key={index}>
+        <span key={index} style={{ position: "absolute", top: 0 }}>
           {index === 0 && isFirstCell && (
             <>
-              <h4 style={{ fontWeight: 300, fontSize: "80%", margin: 0 }}>
+              <h4
+                style={{
+                  fontWeight: 300,
+                  fontSize: "80%",
+                  margin: 0,
+                }}
+              >
                 {lecture.name}
               </h4>
               {coloredCells

@@ -225,13 +225,13 @@ function ClassList({ addLecture, setLoading }) {
             </Table>
           </TableContainer>
 
-          {/* <MajorModal
+          <MajorModal
             isOpen={isMajorModalOpen}
             majorData={lectureData}
             selectedMajor={selectedMajor}
             handleCloseModal={handleCloseMajorModal}
             onSelect={handleSelectMajor}
-          /> */}
+          />
           <GradeModal
             isOpen={isGradeModalOpen}
             selectedGrade={selectedGrade}
@@ -248,6 +248,7 @@ function ClassList({ addLecture, setLoading }) {
           />
         </ThemeProvider>
       </div>
+      {console.log(lectureData)}
     </div>
   );
 }

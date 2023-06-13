@@ -9,6 +9,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    height: "200px",
+    overflow: "auto",
   },
   modalContent: {
     backgroundColor: "white",
@@ -39,8 +41,12 @@ const theme = createTheme();
 function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
   const classes = useStyles();
 
+  const uniqueDepartments = Array.from(
+    new Set(majorData.map((lecture) => lecture.department))
+  );
+
   const handleMajorSelect = (major) => {
-    onSelect(major.major);
+    onSelect(major);
     handleCloseModal();
   };
 
@@ -61,18 +67,18 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
               전공/영역
             </Typography>
             <ul className={classes.list}>
-              {majorData.map((major) => (
+              {uniqueDepartments.map((department) => (
                 <li
-                  key={major.id}
+                  key={department}
                   className={classes.listItem}
-                  onClick={() => handleMajorSelect(major)}
+                  onClick={() => handleMajorSelect(department)}
                 >
                   <Typography
                     className={classes.listItemText}
                     variant="body1"
                     style={{ fontFamily: "Jamsil", fontWeight: 300 }}
                   >
-                    {major.major}
+                    {department}
                   </Typography>
                   <ChevronRightIcon />
                 </li>
