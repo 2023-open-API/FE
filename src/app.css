@@ -92,12 +92,12 @@ background-color: #a7c1e1;
 
 /*캘린더*/
 .toastui-calendar-calendar-section > ul{
-  width: 175.5px;
+  width: 175.5px !important;
 }
 /* 추가 모달 창 색깔 선택 버튼*/
 
 .toastui-calendar-popup-section-private{
-  visibility:hidden;
+  visibility:hidden !important;
   border:none;
   cursor:default;
 } /* 추가 모달 창 잠금 버튼*/
@@ -111,19 +111,19 @@ background-color: #a7c1e1;
 } /* 추가 모달 창 장소 버튼*/
 
 .toastui-calendar-ic-location{
-  display: none;
+  display: none !important;
   width: 0;
   height: 0;
 }
  .toastui-calendar-form-container > div:nth-child(3) > div > input{
-  display: none;
+  display: none !important;
   width: 0;
   height: 0;
   margin: 0;
  }
 
  .toastui-calendar-form-container > div:nth-child(3) > div{
-  display: none;
+  display: none !important;  
   width: 0;
   height: 0;
   margin: 0;
