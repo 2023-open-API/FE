@@ -27,7 +27,7 @@ function TimeTableCell({
     position: "relative",
     fontFamily: "Jamsil",
     fontWeight: 200,
-    width: "110px",
+    width: "6.5vw",
   };
 
   const getColorByLecture = (lectureName) => {
@@ -94,7 +94,7 @@ function TimeTableCell({
       onMouseLeave={handleMouseLeave}
     >
       {lecturesOfDay.map((lecture, index) => (
-        <span key={index} style={{ position: "absolute", top: 0 }}>
+        <span key={index}>
           {index === 0 && isFirstCell && (
             <>
               <h4
