@@ -178,8 +178,11 @@ export default function MainCalendar({ view }) {
   useEffect(() => {
     // Load events from localStorage
     fetchTodoData();
-    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    getCalInstance().createEvents(savedEvents);
+    const storedEvents1 = JSON.parse(localStorage.getItem('events')) ||[];
+    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
+
+    const combinedEvents = [...storedEvents1, ...storedEvents2];
+    getCalInstance().createEvents(combinedEvents);
   }, [getCalInstance]);
 
 
