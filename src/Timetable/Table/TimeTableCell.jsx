@@ -5,10 +5,12 @@ import { FaTimes } from "react-icons/fa";
 const colors = [
   "#E8F0FA",
   "#CEE0F4",
+  "#B0D5F0",
   "#A7C1E1",
   "#84A1C4",
   "#6682A7",
   "#607B9B",
+  "#486689",
 ];
 
 function TimeTableCell({
