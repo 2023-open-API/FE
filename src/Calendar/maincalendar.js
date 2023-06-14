@@ -5,6 +5,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Calendar from '@toast-ui/react-calendar';
 import { theme } from './theme';
 
+import axios from "axios";
+import SERVER from "../api/url";
+
 import '@toast-ui/calendar/toastui-calendar.css';
 import 'tui-date-picker/dist/tui-date-picker.css';
 import 'tui-time-picker/dist/tui-time-picker.css';
@@ -124,7 +127,6 @@ export default function MainCalendar({ view }) {
 
   //일정 추가
   const onBeforeCreateEvent = useCallback((eventData) => {
-    console.log(eventData);
     const event = {
       calendarId: eventData.calendarId || '2', //초기 색 설정임
       id: String(Math.random()),
@@ -141,10 +143,41 @@ export default function MainCalendar({ view }) {
     localStorage.setItem('events', JSON.stringify(updatedEvents));
   }, [getCalInstance]);
 
+  
+  const fetchTodoData = async ({currentData}) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await axios.get(
+        `${SERVER}/api/schedule/month/${currentData}`, config);
+      const todoData = response.data;
+      for (let i = 0; i < todoData.length; i++) {
+        const event = {
+          calendarId: '2', //초기 색 설정임
+          id: String(Math.random()),
+          title: todoData.title,
+          start: todoData.startData,
+          end: todoData.endData,
+        };
+        localStorage.setItem('events', JSON.stringify(event));
+      }
+      if (response.status === 200 || response.status === 201) {
+        alert("조회가 완료되었습니다.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //로컬에서 불러오기
+
   useEffect(() => {
     // Load events from localStorage
+    fetchTodoData("2023-06-14");
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
     getCalInstance().createEvents(savedEvents);
   }, [getCalInstance]);
