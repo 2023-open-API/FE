@@ -20,9 +20,9 @@ const useStyles = makeStyles({
   table: {
     borderSpacing: 0,
     borderBottom: "none",
-    height: "80vh",
     "& th, & td": {
       padding: 0,
+      height: "5vh",
       textAlign: "center",
       fontFamily: "Jamsil",
       fontWeight: 200,

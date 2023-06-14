@@ -5,10 +5,12 @@ import { FaTimes } from "react-icons/fa";
 const colors = [
   "#E8F0FA",
   "#CEE0F4",
+  "#B0D5F0",
   "#A7C1E1",
   "#84A1C4",
   "#6682A7",
   "#607B9B",
+  "#486689",
 ];
 
 function TimeTableCell({
@@ -27,7 +29,7 @@ function TimeTableCell({
     position: "relative",
     fontFamily: "Jamsil",
     fontWeight: 200,
-    width: "110px",
+    width: "6.5vw",
   };
 
   const getColorByLecture = (lectureName) => {
@@ -94,7 +96,7 @@ function TimeTableCell({
       onMouseLeave={handleMouseLeave}
     >
       {lecturesOfDay.map((lecture, index) => (
-        <span key={index} style={{ position: "absolute", top: 0 }}>
+        <span key={index}>
           {index === 0 && isFirstCell && (
             <>
               <h4

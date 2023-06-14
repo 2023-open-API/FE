@@ -192,7 +192,9 @@ function ClassList({ addLecture, setLoading }) {
                     <TableRow key={index}>
                       <TableCell>{lecture.grade}</TableCell>
                       <TableCell>{lecture.name}</TableCell>
-                      <TableCell>{lecture.code}</TableCell>
+                      <TableCell>
+                        {lecture.code}-{lecture.room}
+                      </TableCell>
                       <TableCell>{lecture.professor}</TableCell>
                       <TableCell>{lecture.credit}</TableCell>
                       <TableCell>

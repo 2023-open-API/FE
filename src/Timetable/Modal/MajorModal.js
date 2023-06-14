@@ -45,7 +45,12 @@ function MajorModal({ isOpen, handleCloseModal, majorData, onSelect }) {
 
   const uniqueDepartments = Array.from(
     new Set(majorData.map((lecture) => lecture.department))
-  );
+  ).sort((a, b) => {
+    const removeVowels = (str) => str.replace(/[aeiou]/gi, "");
+    const departmentA = removeVowels(a);
+    const departmentB = removeVowels(b);
+    return departmentA.localeCompare(departmentB);
+  });
 
   const handleMajorSelect = (major) => {
     onSelect(major);
