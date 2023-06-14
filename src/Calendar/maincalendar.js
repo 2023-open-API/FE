@@ -153,7 +153,7 @@ export default function MainCalendar({ view }) {
         },
       };
       const response = await axios.get(
-        `${SERVER}/api/todo/2023-06-14`, config);
+        `${SERVER}/api/schedule/month/2023-06-14`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
@@ -177,11 +177,6 @@ export default function MainCalendar({ view }) {
 
   useEffect(() => {
     // Load events from localStorage
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
-    const initialDate = `${year}-${month}-${day}`;
     fetchTodoData();
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
     getCalInstance().createEvents(savedEvents);
