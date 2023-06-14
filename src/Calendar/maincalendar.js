@@ -144,7 +144,7 @@ export default function MainCalendar({ view }) {
   }, [getCalInstance]);
 
   
-  const fetchTodoData = async ({currentData}) => {
+  const fetchTodoData = async () => {
     try {
       const token = localStorage.getItem("accessToken");
       const config = {
@@ -153,7 +153,7 @@ export default function MainCalendar({ view }) {
         },
       };
       const response = await axios.get(
-        `${SERVER}/api/schedule/month/${currentData}`, config);
+        `${SERVER}/api/todo/2023-06-14`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
@@ -163,7 +163,7 @@ export default function MainCalendar({ view }) {
           start: todoData.startData,
           end: todoData.endData,
         };
-        localStorage.setItem('events', JSON.stringify(event));
+        localStorage.setItem('api', JSON.stringify(event));
       }
       if (response.status === 200 || response.status === 201) {
         alert("조회가 완료되었습니다.");
@@ -177,7 +177,12 @@ export default function MainCalendar({ view }) {
 
   useEffect(() => {
     // Load events from localStorage
-    fetchTodoData("2023-06-14");
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+    const initialDate = `${year}-${month}-${day}`;
+    fetchTodoData();
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
     getCalInstance().createEvents(savedEvents);
   }, [getCalInstance]);
