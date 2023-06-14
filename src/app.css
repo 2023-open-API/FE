@@ -103,7 +103,7 @@ background-color: #a7c1e1;
 } /* 추가 모달 창 잠금 버튼*/
 
 .toastui-calendar-popup-section-item.toastui-calendar-popup-section-location{
-  visibility:hidden;
+  visibility:hidden !important;
   width: 0;
   height: 0;
   border:none;
@@ -130,7 +130,7 @@ background-color: #a7c1e1;
  }
 
  .toastui-calendar-form-container > div:nth-child(3){
-  display: none;
+  display: none !important;
   width: 0;
   height: 0;
   margin: 0;
@@ -139,8 +139,8 @@ background-color: #a7c1e1;
 /* 추가 모달 창 장소 아이콘*/
 
 .toastui-calendar-state-section{
-  display: none;
-  cursor:default;
+  display: none !important;
+  cursor:default !important;
 } /* 추가 모달 창 바쁨 버튼*/
 
 .toastui-calendar-popup-section{
