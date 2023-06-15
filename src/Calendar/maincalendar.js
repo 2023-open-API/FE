@@ -88,13 +88,15 @@ export default function MainCalendar({ view }) {
       const { id, calendarId } = res;
       getCalInstance().deleteEvent(id, calendarId);
 
-    // Remove event from localStorage
-    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
-    const combinedEvents = [...savedEvents, ...storedEvents2];
-    const updatedEvents = combinedEvents.filter((event) => event.id !== id);
-    localStorage.setItem('events', JSON.stringify(updatedEvents));
-  }, [getCalInstance]);
+      // Remove event from localStorage
+      const savedEvents = JSON.parse(localStorage.getItem("events")) || [];
+      const storedEvents2 = JSON.parse(localStorage.getItem("api")) || [];
+      const combinedEvents = [...savedEvents, ...storedEvents2];
+      const updatedEvents = combinedEvents.filter((event) => event.id !== id);
+      localStorage.setItem("events", JSON.stringify(updatedEvents));
+    },
+    [getCalInstance]
+  );
 
   //달 이동
   const onClickNavi = (ev) => {
@@ -109,23 +111,33 @@ export default function MainCalendar({ view }) {
   };
 
   //일정 수정
-  const onBeforeUpdateEvent = useCallback((updateData) => {
-    const targetEvent = updateData.event;
-    const changes = { ...updateData.changes };
-    getCalInstance().updateEvent(targetEvent.id, targetEvent.calendarId, changes);
-    
-    // Update event in localStorage
-    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
-    const combinedEvents = [...savedEvents, ...storedEvents2];
-    const updatedEvents = combinedEvents.map((event) => {
-      if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
-        return { ...event, ...changes };
-      }
-      return event;
-    });
-    localStorage.setItem('events', JSON.stringify(updatedEvents));
-  }, [getCalInstance]);
+  const onBeforeUpdateEvent = useCallback(
+    (updateData) => {
+      const targetEvent = updateData.event;
+      const changes = { ...updateData.changes };
+      getCalInstance().updateEvent(
+        targetEvent.id,
+        targetEvent.calendarId,
+        changes
+      );
+
+      // Update event in localStorage
+      const savedEvents = JSON.parse(localStorage.getItem("events")) || [];
+      const storedEvents2 = JSON.parse(localStorage.getItem("api")) || [];
+      const combinedEvents = [...savedEvents, ...storedEvents2];
+      const updatedEvents = combinedEvents.map((event) => {
+        if (
+          event.title === targetEvent.title &&
+          event.calendarId === targetEvent.calendarId
+        ) {
+          return { ...event, ...changes };
+        }
+        return event;
+      });
+      localStorage.setItem("events", JSON.stringify(updatedEvents));
+    },
+    [getCalInstance]
+  );
 
   //일정 추가
   const onBeforeCreateEvent = useCallback(
@@ -148,7 +160,6 @@ export default function MainCalendar({ view }) {
     [getCalInstance]
   );
 
-
   const fetchTodoData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -168,8 +179,8 @@ export default function MainCalendar({ view }) {
           end: todoData.endData,
         };
         localStorage.setItem("api", JSON.stringify(event));
-        const storedEvents2 = JSON.parse(localStorage.getItem("api")) || [];
-        getCalInstance().createEvents(storedEvents2);
+        const savedEvents = JSON.parse(localStorage.getItem("api")) || [];
+        getCalInstance().createEvents(savedEvents);
       }
       if (response.status === 200 || response.status === 201) {
         console.log("조회가 완료되었습니다.");
