@@ -168,6 +168,8 @@ export default function MainCalendar({ view }) {
           end: todoData.endData,
         };
         localStorage.setItem("api", JSON.stringify(event));
+        const savedEvents = JSON.parse(localStorage.getItem("api")) || [];
+        getCalInstance().createEvents(savedEvents);
       }
       if (response.status === 200 || response.status === 201) {
         console.log("조회가 완료되었습니다.");
