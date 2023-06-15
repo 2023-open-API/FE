@@ -193,7 +193,7 @@ export default function MainCalendar({ view }) {
       if (error.response && error.response.status === 401) {
         window.localStorage.removeItem("token");
       }if (error.response.status === 500) {
-        console.log(error);
+        alert("투두 데이터를 불러오는데 실패하였습니다.");
       }else {
         console.log(error);
       }
