@@ -146,14 +146,14 @@ export default function MainCalendar({ view }) {
   
   const fetchTodoData = async () => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = localStorage.getItem("token");
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       };
       const response = await axios.get(
-        `${SERVER}/api/schedule/month/2023-06-14`, config);
+        `${SERVER}/api/schedule/month/2023-06-15`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
@@ -164,12 +164,18 @@ export default function MainCalendar({ view }) {
           end: todoData.endData,
         };
         localStorage.setItem('api', JSON.stringify(event));
+        const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
+        getCalInstance().createEvents(storedEvents2);
       }
       if (response.status === 200 || response.status === 201) {
-        alert("조회가 완료되었습니다.");
+        console.log("조회가 완료되었습니다.");
       }
     } catch (error) {
-      console.log(error);
+      if (error.response && error.response.status === 401) {
+          window.localStorage.removeItem("token");
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -179,10 +185,7 @@ export default function MainCalendar({ view }) {
     // Load events from localStorage
     fetchTodoData();
     const storedEvents1 = JSON.parse(localStorage.getItem('events')) ||[];
-    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
-
-    const combinedEvents = [...storedEvents1, ...storedEvents2];
-    getCalInstance().createEvents(combinedEvents);
+    getCalInstance().createEvents(storedEvents1);
   }, [getCalInstance]);
 
 
