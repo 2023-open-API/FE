@@ -114,7 +114,6 @@ function Login({ setLoginPage }) {
           studentId: Number(studentId),
           password: password,
         };
-        console.log(userInfo);
         const response = await authUser(userInfo);
         if (response && response.status === 200) {
           const token = response.data.token;
