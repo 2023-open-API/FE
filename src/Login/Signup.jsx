@@ -102,10 +102,10 @@ function Signup({ setSignedUser }) {
     try {
       const userInfo = {
         name: name,
-        password: password,
         studentId: Number(studentId),
+        password: password,
       };
-      console.log(userInfo);
+
       localStorage.setItem("userName", userInfo.name);
       setSignedUser(userInfo);
       await addUser(userInfo);

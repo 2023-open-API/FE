@@ -1,2 +1,2 @@
-const SERVER = "http://35.224.96.67:8080";
+const SERVER = "http://34.64.39.94:8080";
 export default SERVER;
