@@ -120,22 +120,15 @@ export default function MainCalendar({ view }) {
     
     // Update event in localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const updatedEvents = savedEvents.map((event) => {
+    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
+    const combinedEvents = [...savedEvents, ...storedEvents2];
+    const updatedEvents = combinedEvents.map((event) => {
       if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
         return { ...event, ...changes };
       }
       return event;
     });
     localStorage.setItem('events', JSON.stringify(updatedEvents));
-    // Update event in localStorage
-    const savedApis = JSON.parse(localStorage.getItem('api')) || [];
-    const updatedApis = savedApis.map((event) => {
-      if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
-        return { ...event, ...changes };
-      }
-      return event;
-    });
-    localStorage.setItem('api', JSON.stringify(updatedApis));
   }, [getCalInstance]);
 
 
@@ -160,7 +153,6 @@ export default function MainCalendar({ view }) {
     [getCalInstance]
   );
 
-
   const fetchTodoData = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -169,7 +161,7 @@ export default function MainCalendar({ view }) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`${SERVER}/api/schedule/month/2023-06-14`, config);
+      const response = await axios.get(`${SERVER}/api/todo/2023-06-14`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
@@ -220,8 +212,9 @@ export default function MainCalendar({ view }) {
 
   useEffect(() => {
     // Load events from localStorage
-    const savedEvent1 = JSON.parse(localStorage.getItem("events")) || [];
-    getCalInstance().createEvents(savedEvent1);
+    fetchTodoData();
+    const savedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    getCalInstance().createEvents(savedEvents);
   }, [getCalInstance]);
 
   return (
