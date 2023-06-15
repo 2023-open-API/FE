@@ -89,7 +89,9 @@ export default function MainCalendar({ view }) {
 
     // Remove event from localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const updatedEvents = savedEvents.filter((event) => event.id !== id);
+    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
+    const combinedEvents = [...savedEvents, ...storedEvents2];
+    const updatedEvents = combinedEvents.filter((event) => event.id !== id);
     localStorage.setItem('events', JSON.stringify(updatedEvents));
   }, [getCalInstance]);
 
@@ -115,7 +117,9 @@ export default function MainCalendar({ view }) {
     
     // Update event in localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const updatedEvents = savedEvents.map((event) => {
+    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
+    const combinedEvents = [...savedEvents, ...storedEvents2];
+    const updatedEvents = combinedEvents.map((event) => {
       if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
         return { ...event, ...changes };
       }
