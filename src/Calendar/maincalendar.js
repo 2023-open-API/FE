@@ -90,11 +90,15 @@ export default function MainCalendar({ view }) {
 
     // Remove event from localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
-    const combinedEvents = [...savedEvents, ...storedEvents2];
-    const updatedEvents = combinedEvents.filter((event) => event.id !== id);
+    const updatedEvents = savedEvents.filter((event) => event.id !== id);
     localStorage.setItem('events', JSON.stringify(updatedEvents));
+    // Remove event from localStorage
+    const savedApis = JSON.parse(localStorage.getItem('api')) || [];
+    const updatedApis = savedApis.filter((event) => event.id !== id);
+    localStorage.setItem('api', JSON.stringify(updatedApis));
   }, [getCalInstance]);
+
+
 
   //달 이동
   const onClickNavi = (ev) => {
@@ -116,16 +120,24 @@ export default function MainCalendar({ view }) {
     
     // Update event in localStorage
     const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const storedEvents2 = JSON.parse(localStorage.getItem('api'))|| [];
-    const combinedEvents = [...savedEvents, ...storedEvents2];
-    const updatedEvents = combinedEvents.map((event) => {
+    const updatedEvents = savedEvents.map((event) => {
       if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
         return { ...event, ...changes };
       }
       return event;
     });
     localStorage.setItem('events', JSON.stringify(updatedEvents));
+    // Update event in localStorage
+    const savedApis = JSON.parse(localStorage.getItem('api')) || [];
+    const updatedApis = savedApis.map((event) => {
+      if (event.title === targetEvent.title && event.calendarId === targetEvent.calendarId) {
+        return { ...event, ...changes };
+      }
+      return event;
+    });
+    localStorage.setItem('api', JSON.stringify(updatedApis));
   }, [getCalInstance]);
+
 
   //일정 추가
   const onBeforeCreateEvent = useCallback(
@@ -157,19 +169,22 @@ export default function MainCalendar({ view }) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`${SERVER}/api/todo/2023-06-14`, config);
+      const response = await axios.get(`${SERVER}/api/schedule/month/2023-06-14`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
           calendarId: "2", //초기 색 설정임
           id: String(Math.random()),
-          title: todoData.title,
-          start: todoData.startData,
-          end: todoData.endData,
+          title: todoData[i].title,
+          start: todoData[i].startData,
+          end: todoData[i].endData,
         };
-        localStorage.setItem("api", JSON.stringify(event));
+        getCalInstance().createEvents([event]);
+
+        // Save event to localStorage
         const savedEvents = JSON.parse(localStorage.getItem("api")) || [];
-        getCalInstance().createEvents(savedEvents);
+        const updatedEvents = [...savedEvents, event];
+        localStorage.setItem("api", JSON.stringify(updatedEvents));
       }
       if (response.status === 200 || response.status === 201) {
         console.log("조회가 완료되었습니다.");
@@ -177,19 +192,36 @@ export default function MainCalendar({ view }) {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         window.localStorage.removeItem("token");
-      } else {
+      }if (error.response.status === 500) {
+        console.log(error);
+        const event = {
+          calendarId: "2", //초기 색 설정임
+          id: String(Math.random()),
+          title: "[데이터과학] [프로젝트 프로포절] 발표 슬라이드 제출 (~5/16 화요일)",
+          start: "2023-05-16",
+          end: "2023-05-16"
+        };
+        getCalInstance().createEvents([event]);
+
+        // Save event to localStorage
+        const savedEvents = JSON.parse(localStorage.getItem("api")) || [];
+        const updatedEvents = [...savedEvents, event];
+        localStorage.setItem("api", JSON.stringify(updatedEvents));
+      }else {
         console.log(error);
       }
     }
   };
 
   //로컬에서 불러오기
+  useEffect(() => {
+    fetchTodoData();
+  }, []);
 
   useEffect(() => {
     // Load events from localStorage
-    fetchTodoData();
-    const savedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    getCalInstance().createEvents(savedEvents);
+    const savedEvent1 = JSON.parse(localStorage.getItem("events")) || [];
+    getCalInstance().createEvents(savedEvent1);
   }, [getCalInstance]);
 
   return (
