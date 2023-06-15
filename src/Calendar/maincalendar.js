@@ -169,15 +169,15 @@ export default function MainCalendar({ view }) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`${SERVER}/api/schedule/month/2023-06-14`, config);
+      const response = await axios.get(`${SERVER}/api/schedule/month/2023-05-14`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
           calendarId: "2", //초기 색 설정임
           id: String(Math.random()),
           title: todoData[i].title,
-          start: todoData[i].startData,
-          end: todoData[i].endData,
+          start: todoData[i].startDate,
+          end: todoData[i].endDate,
         };
         getCalInstance().createEvents([event]);
 
@@ -192,8 +192,6 @@ export default function MainCalendar({ view }) {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         window.localStorage.removeItem("token");
-      }if (error.response.status === 500) {
-        alert("투두 데이터를 불러오는데 실패하였습니다.");
       }else {
         console.log(error);
       }
@@ -202,6 +200,7 @@ export default function MainCalendar({ view }) {
 
   //로컬에서 불러오기
   useEffect(() => {
+    setSelectedView(view);
     fetchTodoData();
   }, []);
 
