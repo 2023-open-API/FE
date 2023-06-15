@@ -20,12 +20,11 @@ export const authUser = async (userInfo) => {
     const response = await axios.post(`${SERVER}/api/login`, userInfo);
     console.log(response.data);
     if (response.status === 200) {
-      const token = response.data.token;
+      const accesstoken = response.data.token;
 
-      localStorage.setItem("accessToken", token);
       const config = {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accesstoken}`,
         },
       };
 
