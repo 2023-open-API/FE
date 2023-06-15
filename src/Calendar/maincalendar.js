@@ -168,7 +168,10 @@ export default function MainCalendar({ view }) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`${SERVER}/api/todo/2023-06-15`, config);
+      const response = await axios.get(
+        `${SERVER}/api/schedule/month/2023-06-15`,
+        config
+      );
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
