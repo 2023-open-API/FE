@@ -194,19 +194,6 @@ export default function MainCalendar({ view }) {
         window.localStorage.removeItem("token");
       }if (error.response.status === 500) {
         console.log(error);
-        const event = {
-          calendarId: "2", //초기 색 설정임
-          id: String(Math.random()),
-          title: "[데이터과학] [프로젝트 프로포절] 발표 슬라이드 제출 (~5/16 화요일)",
-          start: "2023-05-16",
-          end: "2023-05-16"
-        };
-        getCalInstance().createEvents([event]);
-
-        // Save event to localStorage
-        const savedEvents = JSON.parse(localStorage.getItem("api")) || [];
-        const updatedEvents = [...savedEvents, event];
-        localStorage.setItem("api", JSON.stringify(updatedEvents));
       }else {
         console.log(error);
       }
