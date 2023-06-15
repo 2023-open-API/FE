@@ -169,7 +169,12 @@ export default function MainCalendar({ view }) {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.get(`${SERVER}/api/schedule/month/2023-05-14`, config);
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const day = String(today.getDate()).padStart(2, "0");
+      const initialDate = `${year}-${month}-${day}`;
+      const response = await axios.get(`${SERVER}/api/schedule/month/${initialDate}`, config);
       const todoData = response.data;
       for (let i = 0; i < todoData.length; i++) {
         const event = {
