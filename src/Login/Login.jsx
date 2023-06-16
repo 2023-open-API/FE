@@ -118,8 +118,8 @@ function Login({ setLoginPage, setLoggedUserName }) {
         if (response && response.status === 200) {
           const token = response.data.token;
           const name = response.data.name;
-          setLoggedUserName(name);
           localStorage.setItem("token", token);
+          localStorage.setItem("userName", name);
           setLoginPage(userInfo);
           alert("로그인되었습니다.");
           navigate("/");

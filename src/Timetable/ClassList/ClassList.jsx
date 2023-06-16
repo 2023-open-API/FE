@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   tableContainer: {
     border: "none",
     boxShadow: "none",
-    minWidth: "1000px",
+    minWidth: "60vw",
   },
   modalContainer: {
     display: "flex",

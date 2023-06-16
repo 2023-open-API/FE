@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function NavMenu({ loggedUserName }) {
+function NavMenu() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -48,7 +48,9 @@ function NavMenu({ loggedUserName }) {
             시간표
           </Link>
 
-          <span className={classes.navbtn}>{loggedUserName}님</span>
+          <span className={classes.navbtn}>
+            {localStorage.getItem("userName")}님
+          </span>
         </div>
       </nav>
     </div>
