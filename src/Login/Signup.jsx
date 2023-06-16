@@ -142,7 +142,12 @@ function Signup({ setSignedUser }) {
   };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+    const value = event.target.value;
+    const validChars = /^[A-Za-z!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/;
+
+    if (validChars.test(value)) {
+      setPassword(value);
+    }
   };
 
   return (

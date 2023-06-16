@@ -20,14 +20,6 @@ export const authUser = async (userInfo) => {
     const response = await axios.post(`${SERVER}/api/login`, userInfo);
     console.log(response.data);
     if (response.status === 200) {
-      const accesstoken = response.data.token;
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${accesstoken}`,
-        },
-      };
-
       return response;
     }
   } catch (error) {

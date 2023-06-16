@@ -15,6 +15,7 @@ function App() {
     userId: "",
     password: "",
   });
+  const [loggedUserName, setLoggedUserName] = useState("");
 
   const setLoginPage = (userInfo) => {
     setIsLoggedIn(true);
@@ -31,10 +32,18 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {isLoggedIn && <NavMenu signeduser={signeduser} />}
+        {isLoggedIn && <NavMenu loggedUserName={loggedUserName} />}
         <Routes>
           {!isLoggedIn && (
-            <Route path="/" element={<Login setLoginPage={setLoginPage} />} />
+            <Route
+              path="/"
+              element={
+                <Login
+                  setLoginPage={setLoginPage}
+                  setLoggedUserName={setLoggedUserName}
+                />
+              }
+            />
           )}
           {!isLoggedIn && (
             <Route

@@ -83,7 +83,7 @@ const StyledButton = styled.button`
   }
 `;
 
-function Login({ setLoginPage }) {
+function Login({ setLoginPage, setLoggedUserName }) {
   const classes = useStyles();
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
@@ -117,6 +117,8 @@ function Login({ setLoginPage }) {
         const response = await authUser(userInfo);
         if (response && response.status === 200) {
           const token = response.data.token;
+          const name = response.data.name;
+          setLoggedUserName(name);
           localStorage.setItem("token", token);
           setLoginPage(userInfo);
           alert("로그인되었습니다.");
